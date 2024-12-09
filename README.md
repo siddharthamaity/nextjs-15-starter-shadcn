@@ -13,7 +13,7 @@ Welcome to the **Next.js 15 Starter** repository! This starter template is built
 ## 🚀 What's Included
 
 - **Next.js 15 (Stable)**
-- **React 19 (RC)**
+- **React 19 (Stable)**
 - **TypeScript 5**
 - **ESLint 9**
 - **Prettier 3**
@@ -22,7 +22,7 @@ Welcome to the **Next.js 15 Starter** repository! This starter template is built
 - **App Directory**
 - **System, Light & Dark Mode**
 - **Next.js Bundle Analyzer**
-- **Dockerfile** with Node.js 20.18.0 (Alpine)
+- **Dockerfile** with Node.js 22.11.0 (Alpine)
 
 ### 🛠️ ESLint Plugins
 
