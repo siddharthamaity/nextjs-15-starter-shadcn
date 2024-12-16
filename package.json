@@ -67,7 +67,7 @@
         "zod": "^3.23.8"
     },
     "devDependencies": {
-        "@eslint/js": "^9.16.0",
+        "@eslint/js": "^9.17.0",
         "@faker-js/faker": "^9.3.0",
         "@next/bundle-analyzer": "15.0.4",
         "@next/eslint-plugin-next": "15.0.4",
