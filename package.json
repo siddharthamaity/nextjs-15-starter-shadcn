@@ -80,7 +80,7 @@
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-import": "^2.31.0",
         "eslint-plugin-promise": "^7.2.1",
-        "eslint-plugin-react": "^7.37.3",
+        "eslint-plugin-react": "^7.37.4",
         "eslint-plugin-tailwindcss": "^3.17.5",
         "globals": "^15.14.0",
         "postcss": "^8.4.49",
