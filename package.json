@@ -42,7 +42,7 @@
         "@radix-ui/react-tooltip": "^1.1.8",
         "@tanstack/react-table": "^8.20.6",
         "@types/unist": "^3.0.3",
-        "@vercel/analytics": "^1.4.1",
+        "@vercel/analytics": "^1.5.0",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "cmdk": "^1.0.4",
