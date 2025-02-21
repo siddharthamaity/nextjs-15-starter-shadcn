@@ -21,17 +21,17 @@
         "react": "19.0.0",
         "react-dom": "19.0.0",
         "tailwind-merge": "^3.0.1",
-        "tailwindcss": "^4.0.6"
+        "tailwindcss": "^4.0.7"
     },
     "devDependencies": {
         "@eslint/js": "^9.20.0",
         "@next/bundle-analyzer": "15.1.7",
         "@next/eslint-plugin-next": "15.1.7",
-        "@tailwindcss/postcss": "^4.0.6",
+        "@tailwindcss/postcss": "^4.0.7",
         "@trivago/prettier-plugin-sort-imports": "^5.2.2",
         "@types/node": "^22.13.4",
-        "@types/react": "19.0.8",
-        "@types/react-dom": "19.0.3",
+        "@types/react": "19.0.10",
+        "@types/react-dom": "19.0.4",
         "eslint": "^9.20.1",
         "eslint-config-next": "15.1.7",
         "eslint-config-prettier": "^10.0.1",
@@ -39,11 +39,11 @@
         "eslint-plugin-promise": "^7.2.1",
         "eslint-plugin-react": "^7.37.4",
         "eslint-plugin-tailwindcss": "^3.18.0",
-        "globals": "^15.15.0",
-        "postcss": "^8.5.2",
+        "globals": "^16.0.0",
+        "postcss": "^8.5.3",
         "prettier": "^3.5.1",
         "prettier-plugin-tailwindcss": "^0.6.11",
         "typescript": "^5.7.3",
-        "typescript-eslint": "^8.24.0"
+        "typescript-eslint": "^8.24.1"
     }
 }
