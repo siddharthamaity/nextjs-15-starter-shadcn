@@ -12,8 +12,8 @@ Welcome to the **Next.js 15 Starter** repository! This starter template is built
 
 ## 🚀 What's Included
 
-- **Next.js 15 (Stable)**
-- **React 19 (Stable)**
+- **Next.js 15**
+- **React 19**
 - **TypeScript 5**
 - **ESLint 9**
 - **Prettier 3**
@@ -22,7 +22,7 @@ Welcome to the **Next.js 15 Starter** repository! This starter template is built
 - **App Directory**
 - **System, Light & Dark Mode**
 - **Next.js Bundle Analyzer**
-- **Dockerfile** with Node.js 22.13.1 (Alpine)
+- **Dockerfile** with Node.js 22.14.0 (Alpine)
 
 ### 🛠️ ESLint Plugins
 
@@ -105,7 +105,7 @@ To enhance development experience, install the following VS Code extensions:
 To use Docker, make sure Docker is installed on your machine. Then, build and run the Docker container:
 
 ```bash
-docker build -t nextjs-starter-shadcn .
+docker build . -t nextjs-starter-shadcn
 docker run -p 3000:3000 nextjs-starter-shadcn
 ```
 
