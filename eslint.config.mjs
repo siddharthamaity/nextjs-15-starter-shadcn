@@ -5,7 +5,6 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 import importPlugin from 'eslint-plugin-import';
 import pluginPromise from 'eslint-plugin-promise';
 import pluginReact from 'eslint-plugin-react';
-import tailwind from 'eslint-plugin-tailwindcss';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -33,7 +32,6 @@ export default [
     pluginReact.configs.flat.recommended, // ? https://github.com/jsx-eslint/eslint-plugin-react
     pluginReact.configs.flat['jsx-runtime'], // ? https://github.com/jsx-eslint/eslint-plugin-react
     eslintConfigPrettier, // ? https://github.com/prettier/eslint-config-prettier
-    ...tailwind.configs['flat/recommended'], // ? https://github.com/francoismassart/eslint-plugin-tailwindcss
     {
         rules: {
             'no-unused-vars': 'off',
@@ -44,8 +42,6 @@ export default [
             'newline-before-return': 'error',
             '@typescript-eslint/no-unused-vars': 'off',
             '@typescript-eslint/no-unused-expressions': 'off',
-            'tailwindcss/no-custom-classname': 'off',
-            'tailwindcss/migration-from-tailwind-2': 'off',
             'import/no-unresolved': 'off',
             'import/no-named-as-default': 'off',
             // ! TO COMPILE SHADCN EXAMPLES, PLEASE REMOVE AS NEEDED
