@@ -17,7 +17,7 @@ Welcome to the **Next.js 15 Starter** repository! This starter template is built
 - **TypeScript 5**
 - **ESLint 9**
 - **Prettier 3**
-- **Tailwind CSS 3**
+- **Tailwind CSS 4**
 - **Shadcn UI**
 - **App Directory**
 - **System, Light & Dark Mode**
