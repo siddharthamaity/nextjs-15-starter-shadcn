@@ -20,8 +20,7 @@ const FEATURES: Feature[] = [
     { name: 'Tailwind CSS 4' },
     {
         // ! ===================== DISCLAIMER =====================
-        // ! There is no official solution available for new ESLint 9 flat config structure for NextJS
-        // ! The solution is taken from the community and may not be the best practice, use it at your own risk
+        // ! The solution is taken from the community and may not be the best practice, use it at your own judgement.
         // ? Ref: https://github.com/vercel/next.js/discussions/49337?sort=top#discussioncomment-5998603
         // ! ======================================================
         name: 'ESLint 9'
@@ -33,7 +32,7 @@ const FEATURES: Feature[] = [
     { name: 'App Directory' },
     { name: 'System, Light & Dark Mode' },
     { name: 'Next Bundle Analyzer' },
-    { name: 'Dockerfile using Node 22.13.1 (alpine)' }
+    { name: 'Dockerfile using Node 22.14.0 (alpine)' }
 ];
 
 const ESLINT_PLUGINS: Plugin[] = [
