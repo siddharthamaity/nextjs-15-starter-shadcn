@@ -5,7 +5,7 @@
     "website": "https://nextjs-15-starter-shadcn.vercel.app/",
     "license": "MIT",
     "scripts": {
-        "dev": "next dev --turbopack",
+        "dev": "next dev --turbopack --port 3003",
         "build": "next build",
         "start": "next start",
         "lint": "next lint",

@@ -5,9 +5,10 @@ import localFont from 'next/font/local';
 
 import { ThemeProvider } from 'next-themes';
 
-import NavigationBar from '@/app/(delete-this-and-modify-page.tsx)/NavigationBar';
 import '@/app/globals.css';
-import { Toaster } from '@/registry/new-york-v4/ui/sonner';
+import NavigationBar from '@/components/NavigationBar';
+import { Analytics } from '@/components/analytics';
+import { Toaster } from '@/components/ui/sooner';
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -30,12 +31,46 @@ const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
         // ? https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
         // ? https://react.dev/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors
         <html suppressHydrationWarning lang='en'>
+            <head>
+                {/* Light mode favicons */}
+                <link
+                    rel='icon'
+                    type='image/png'
+                    sizes='32x32'
+                    href='/favicon-32x32.png'
+                    media='(prefers-color-scheme: light)'
+                />
+                <link
+                    rel='icon'
+                    type='image/png'
+                    sizes='16x16'
+                    href='/favicon-16x16.png'
+                    media='(prefers-color-scheme: light)'
+                />
+
+                {/* Dark mode favicons */}
+                <link
+                    rel='icon'
+                    type='image/png'
+                    sizes='32x32'
+                    href='/favicon-32x32-dark-mode.png'
+                    media='(prefers-color-scheme: dark)'
+                />
+                <link
+                    rel='icon'
+                    type='image/png'
+                    sizes='16x16'
+                    href='/favicon-16x16-dark-mode.png'
+                    media='(prefers-color-scheme: dark)'
+                />
+            </head>
             <body
                 className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground overscroll-none antialiased`}>
                 <ThemeProvider attribute='class'>
                     <NavigationBar />
                     {children}
                     <Toaster />
+                    <Analytics />
                 </ThemeProvider>
             </body>
         </html>
