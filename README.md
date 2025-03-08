@@ -73,7 +73,7 @@ To enhance development experience, install the following VS Code extensions:
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/yourusername/nextjs-15-starter-shadcn.git
+    git clone https://github.com/siddharthamaity/nextjs-15-starter-shadcn.git
     cd nextjs-15-starter-shadcn
     ```
     To get the code without example change branch to without-example
