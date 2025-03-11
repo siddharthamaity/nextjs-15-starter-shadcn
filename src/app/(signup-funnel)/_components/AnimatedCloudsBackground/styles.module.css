@@ -1,0 +1,27 @@
+/* Bottom cloud layer */
+.clouds-bg-bottom {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    animation: zoomInOut 30s ease-in-out infinite;
+}
+
+/* Top cloud layer */
+.clouds-bg-top {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    animation: zoomInOut 25s ease-in-out infinite;
+}
+
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1.4);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
