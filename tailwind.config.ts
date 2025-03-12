@@ -1,5 +1,8 @@
 import type { Config } from 'tailwindcss';
 import animate from 'tailwindcss-animate';
+import colors from 'tailwindcss/colors';
+
+const builtinFontList = ['system-ui', 'BlinkMacSystemFont'];
 
 const config: Config = {
     darkMode: ['class', "[data-mode='dark']"],
@@ -16,16 +19,32 @@ const config: Config = {
                 '2xl': '1400px'
             }
         },
+        fontFamily: {
+            sans: ['var(--font-geist-sans)'],
+            mono: ['var(--font-geist-mono)'],
+            figtree: ['Figtree', 'var(--font-figtree)', 'sans-serif']
+        },
         extend: {
+            fontFamily: {
+                300: ['TWKLausanne-300', ...builtinFontList],
+                350: ['TWKLausanne-350', ...builtinFontList],
+                400: ['TWKLausanne-400', ...builtinFontList],
+                450: ['TWKLausanne-450', ...builtinFontList],
+                500: ['TWKLausanne-500', ...builtinFontList],
+                550: ['TWKLausanne-550', ...builtinFontList],
+                600: ['TWKLausanne-600', ...builtinFontList],
+                650: ['TWKLausanne-650', ...builtinFontList],
+                750: ['TWKLausanne-750', ...builtinFontList],
+                800: ['TWKLausanne-800', ...builtinFontList],
+                850: ['TWKLausanne-850', ...builtinFontList]
+            },
             borderRadius: {
                 lg: 'var(--radius)',
                 md: 'calc(var(--radius) - 2px)',
                 sm: 'calc(var(--radius) - 4px)'
             },
             colors: {
-                neutral: {
-                    ...require('tailwindcss/colors').neutral
-                },
+                neutral: colors.neutral,
                 border: 'hsl(var(--border))',
                 input: 'hsl(var(--input))',
                 ring: 'hsl(var(--ring))',

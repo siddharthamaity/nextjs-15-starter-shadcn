@@ -86,31 +86,34 @@ export function SuccessView() {
             <div className='relative z-10 w-full px-4 md:mt-12 md:px-6'>
                 <div className='mx-auto mt-20 grid max-w-4xl gap-6 md:grid-cols-2'>
                     <PricingCard
-                        title='Road Warrior'
+                        title='Auto Refunds'
                         description={
                             <>
-                                <span className='font-semibold text-neutral-950'>We go to war for you:</span> we'll
-                                monitor prices and deal with the airlines or hotels on your behalf. Road Warriors save{' '}
-                                <span className='font-semibold'>~$200 a year</span> on average on their travel.
+                                <span className='font-semibold text-neutral-950'>We do all the work:</span> we'll
+                                monitor prices and hassle with airline support lines to get your the difference back if
+                                prices drop
                             </>
                         }
-                        price={{ amount: '25.00', period: 'year' }}
+                        price={{ amount: '25' }}
+                        strikeThroughPrice={{ amount: '99' }}
                         features={features}
                         buttonText='Yearly Plan'
                         buttonAction={handleStripeSignup}
                         isPopular
                         isLoading={isLoading}
                         error={error}
+                        showDiscountPercentage={true}
                     />
 
                     <PricingCard
                         title='Free'
-                        description='Get alerts when prices drop, receive refunds by spending an average of 30 minutes haggling with airlines or hotels yourself.'
-                        price={{ amount: '0.00' }}
+                        description='Get alerts when prices drop, then talk to
+                                airlines or hotels to get your money back'
                         features={features}
-                        buttonText='Select Free Plan'
+                        buttonText='Choose free'
                         buttonAction={handleFreePlan}
                         variant='secondary'
+                        showDiscountPercentage={false}
                     />
                 </div>
             </div>

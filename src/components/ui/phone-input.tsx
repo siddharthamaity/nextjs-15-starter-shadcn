@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 
+import { WhatsApp } from '@/components/Icon/IconWhatsApp';
 import { Button } from '@/components/ui/button';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -23,9 +24,18 @@ interface PhoneInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     name: string;
     label?: string;
     onCountryChange?: (countryCode: string) => void;
+    showWhatsAppIcon?: boolean;
 }
 
-export function PhoneInput({ control, name, label, className, onCountryChange, ...props }: PhoneInputProps) {
+export function PhoneInput({
+    control,
+    name,
+    label,
+    className,
+    onCountryChange,
+    showWhatsAppIcon,
+    ...props
+}: PhoneInputProps) {
     const [open, setOpen] = React.useState(false);
     const [search, setSearch] = React.useState('');
 
@@ -105,41 +115,41 @@ export function PhoneInput({ control, name, label, className, onCountryChange, .
                 return (
                     <FormItem className='flex flex-col gap-2'>
                         {label && <FormLabel>{label}</FormLabel>}
-                        <div className='flex gap-2'>
+                        <div className='relative flex gap-0'>
                             <Popover open={open} onOpenChange={setOpen}>
                                 <PopoverTrigger asChild>
                                     <Button
                                         variant='outline'
                                         role='combobox'
                                         aria-expanded={open}
-                                        className='h-12 w-[140px] justify-between'>
-                                        <div className='flex items-center gap-2'>
-                                            <span className='text-base'>{selectedCountry.flag}</span>
+                                        className='h-12 w-fit justify-between rounded-r-none'>
+                                        <div className='flex items-center gap-1 md:gap-2'>
+                                            <span className='hidden text-base md:block'>{selectedCountry.flag}</span>
                                             <span className='text-sm'>{selectedCountry.code}</span>
-                                            <span className='text-muted-foreground text-sm'>
+                                            <span className='text-muted-foreground text-xs'>
                                                 {selectedCountry.dial_code}
                                             </span>
                                         </div>
-                                        <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+                                        <CaretSortIcon className='ml-0 h-4 w-4 shrink-0 opacity-50 md:ml-2' />
                                     </Button>
                                 </PopoverTrigger>
-                                <PopoverContent className='w-[300px] p-0' align='start'>
-                                    <Command>
+                                <PopoverContent className='font-figtree w-[300px] p-0' align='start'>
+                                    <Command className='font-figtree'>
                                         <CommandInput
                                             placeholder='Search country...'
                                             value={search}
                                             onValueChange={setSearch}
-                                            className='h-12'
+                                            className='font-figtree'
                                         />
                                         <CommandList>
                                             <CommandEmpty>No country found.</CommandEmpty>
-                                            <CommandGroup>
+                                            <CommandGroup className='max-h-[120px] overflow-y-auto'>
                                                 {filteredCountries.map((country) => (
                                                     <CommandItem
                                                         key={country.code}
                                                         value={country.code}
                                                         onSelect={() => handleCountryChange(country)}>
-                                                        <div className='flex items-center gap-2'>
+                                                        <div className='flex w-full items-center gap-2'>
                                                             <span className='text-base'>{country.flag}</span>
                                                             <span className='text-sm'>{country.name}</span>
                                                             <span className='text-muted-foreground text-sm'>
@@ -161,6 +171,9 @@ export function PhoneInput({ control, name, label, className, onCountryChange, .
                                     </Command>
                                 </PopoverContent>
                             </Popover>
+                            {showWhatsAppIcon && (
+                                <WhatsApp className='absolute top-1/2 right-4 size-5 -translate-y-1/2 opacity-20' />
+                            )}
                             <FormControl>
                                 <Input
                                     {...props}

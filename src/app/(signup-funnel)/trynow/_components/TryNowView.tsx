@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import IconNewWhite from '@/components/Icon/IconNewWhite';
 import { Button } from '@/components/ui/button';
@@ -37,8 +37,21 @@ interface FormValues {
 
 export function TryNowView() {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const [isLoading, setIsLoading] = useState(false);
     const [selectedPhoneCountry, setSelectedPhoneCountry] = useState<string | null>(null);
+
+    // Get UTM parameters
+    const getUtmParams = () => {
+        const utmParams = new URLSearchParams();
+        searchParams.forEach((value, key) => {
+            if (key.startsWith('utm_')) {
+                utmParams.append(key, value);
+            }
+        });
+
+        return utmParams.toString();
+    };
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
@@ -47,12 +60,21 @@ export function TryNowView() {
             phone: '',
             citizenship: '',
             terms: false
-        }
+        },
+        mode: 'onBlur',
+        reValidateMode: 'onChange'
     });
+
+    const { email, phone, citizenship, terms } = form.watch();
+
+    const validateForm = async () => {
+        const isValid = await form.trigger();
+
+        return isValid;
+    };
 
     const handlePhoneCountryChange = (countryCode: string) => {
         setSelectedPhoneCountry(countryCode);
-        // Immediately update citizenship if it's empty
         if (!form.getValues('citizenship')) {
             form.setValue('citizenship', countryCode, {
                 shouldValidate: true,
@@ -62,6 +84,11 @@ export function TryNowView() {
     };
 
     async function onSubmit(data: FormValues) {
+        const isValid = await validateForm();
+        if (!isValid) {
+            return;
+        }
+
         setIsLoading(true);
         try {
             const response = await fetch('/api/trynow', {
@@ -69,14 +96,24 @@ export function TryNowView() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify({
+                    ...data,
+                    utm_params: getUtmParams(),
+                    state_id: searchParams.get('state_id') || undefined
+                })
             });
 
             if (!response.ok) {
                 throw new Error('Submission failed');
             }
 
-            router.push('/gmail-link');
+            const result = await response.json();
+
+            if (result.redirect_url) {
+                window.location.href = result.redirect_url;
+            } else {
+                router.push('/gmail-link');
+            }
         } catch (error) {
             console.error('Form submission error:', error);
         } finally {
@@ -85,19 +122,19 @@ export function TryNowView() {
     }
 
     return (
-        <div className='relative z-10 flex min-h-screen w-full flex-col'>
-            <div className='flex w-full flex-1 flex-col items-center px-4 md:py-6'>
+        <div className='relative z-10 flex min-h-screen w-full flex-col items-center justify-center'>
+            <div className='flex w-full flex-1 flex-col items-center justify-center px-4 py-6'>
                 {/* Logo container */}
-                <div className='mb-6 flex w-full items-center justify-center'>
+                <div className='flex w-full items-center justify-center'>
                     <div className='w-full max-w-md'>
-                        <IconNewWhite className='h-16 w-auto max-w-md' />
+                        <IconNewWhite className='h-12 w-auto max-w-md' />
                     </div>
                 </div>
 
                 {/* Form Container */}
-                <div className='mx-auto w-full max-w-md rounded-2xl bg-neutral-50 px-5 py-6'>
+                <div className='font-figtree mt-6 w-full max-w-md rounded-2xl bg-neutral-50 px-5 py-6 drop-shadow-md'>
                     {/* Header */}
-                    <div className='flex w-full flex-row items-center justify-start gap-2 pt-3 text-sm font-semibold text-[#2DBF64] uppercase'>
+                    <div className='flex w-full flex-row items-center justify-start gap-2 pt-3 text-sm font-extrabold tracking-wide text-[#2DBF64] uppercase'>
                         <span>Price drop protection</span>
                         <ShieldCheck className='mb-0.5 size-5' />
                     </div>
@@ -106,7 +143,7 @@ export function TryNowView() {
                         Try Ascend for free!
                     </div>
 
-                    <div className='font-figtree mb-2 text-sm text-neutral-900/50'>
+                    <div className='font-figtree text-md mb-2 text-neutral-900/70'>
                         With ascend, as soon as prices drop on your hotel and flight reservations, we step in to help
                         you save money
                     </div>
@@ -119,7 +156,7 @@ export function TryNowView() {
                                 name='email'
                                 render={({ field }) => (
                                     <FormItem className='py-2'>
-                                        <FormLabel>Email</FormLabel>
+                                        <FormLabel>Email *</FormLabel>
                                         <FormControl>
                                             <Input placeholder='Enter your email' {...field} className='h-12' />
                                         </FormControl>
@@ -131,21 +168,22 @@ export function TryNowView() {
                             <PhoneInput
                                 control={form.control}
                                 name='phone'
-                                label='WhatsApp number'
-                                placeholder='Enter your WhatsApp number'
-                                className='h-12'
+                                label='WhatsApp number *'
+                                placeholder='Number'
+                                className='h-12 rounded-l-none'
                                 onCountryChange={handlePhoneCountryChange}
+                                showWhatsAppIcon
                             />
 
                             <CitizenshipSelector<FormValues>
                                 control={form.control}
                                 name='citizenship'
-                                label='Citizenship'
+                                label='Citizenship *'
                                 className='h-16 py-2'
                             />
 
-                            <div className='text-sm text-neutral-600'>
-                                Citizenship is required by hotels & airlines due to international travel restrictions.
+                            <div className='mt-2 text-xs text-neutral-900'>
+                                Citizenship is required by hotels & airlines due to international travel restrictions. *
                             </div>
 
                             <FormField
@@ -186,7 +224,7 @@ export function TryNowView() {
                                 type='submit'
                                 className='mt-4 w-full bg-[#2DBF64] font-semibold hover:bg-[#2DBF64]/90'
                                 disabled={isLoading}>
-                                {isLoading ? 'Submitting...' : 'Continue'}
+                                {isLoading ? 'Submitting...' : 'Get started for free!'}
                             </Button>
                         </form>
                     </Form>

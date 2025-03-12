@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 import type { Metadata } from 'next';
+import { Figtree } from 'next/font/google';
 import localFont from 'next/font/local';
 
 import { ThemeProvider } from 'next-themes';
@@ -9,6 +10,7 @@ import '@/app/globals.css';
 import NavigationBar from '@/components/NavigationBar';
 import { Analytics } from '@/components/analytics';
 import { Toaster } from '@/components/ui/sooner';
+import { cn } from '@/lib/utils';
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -19,6 +21,12 @@ const geistMono = localFont({
     src: './fonts/GeistMonoVF.woff',
     variable: '--font-geist-mono',
     weight: '100 900'
+});
+
+const figtree = Figtree({
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-figtree'
 });
 
 export const metadata: Metadata = {
@@ -34,7 +42,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang='en'>
+        <html
+            lang='en'
+            className={cn(
+                geistSans.variable,
+                geistMono.variable,
+                figtree.variable,
+                'bg-background text-foreground overscroll-none antialiased'
+            )}>
             <head>
                 {/* Standard icons */}
                 <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
@@ -87,8 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                 <link rel='preload' href='/images/clouds-bg.png' as='image' type='image/png' />
             </head>
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground overscroll-none antialiased`}>
+            <body>
                 {/* <ThemeProvider attribute='class'> */}
                 <NavigationBar />
                 {children}

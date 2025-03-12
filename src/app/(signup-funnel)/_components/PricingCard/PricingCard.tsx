@@ -12,9 +12,8 @@ interface PricingFeature {
 interface PricingCardProps {
     title: string;
     description: React.ReactNode;
-    price: {
+    price?: {
         amount: string;
-        period?: string;
     };
     features: PricingFeature[];
     buttonText: string;
@@ -23,6 +22,24 @@ interface PricingCardProps {
     variant?: 'primary' | 'secondary';
     isLoading?: boolean;
     error?: string | null;
+    strikeThroughPrice?: {
+        amount: string;
+    };
+    showDiscountPercentage?: boolean;
+}
+
+function Price({ price, strikeThroughPrice }: { price: string; strikeThroughPrice: boolean }) {
+    return (
+        <div
+            className={cn(
+                'flex items-start justify-start gap-2 md:justify-start',
+                strikeThroughPrice && 'line-through opacity-20'
+            )}>
+            <span className='-mr-2 pt-1 text-2xl font-medium text-neutral-900'>$</span>
+            <span className='text-3xl font-bold text-neutral-900'>{price}.</span>
+            <span className='-ml-2 pt-1 text-2xl font-bold text-neutral-900'>00</span>
+        </div>
+    );
 }
 
 export function PricingCard({
@@ -35,7 +52,9 @@ export function PricingCard({
     isPopular,
     variant = 'primary',
     isLoading,
-    error
+    error,
+    strikeThroughPrice,
+    showDiscountPercentage = false
 }: PricingCardProps) {
     const isPaidPlan = variant === 'primary';
 
@@ -50,15 +69,19 @@ export function PricingCard({
 
             <div className='relative z-10 rounded-2xl bg-white p-6 drop-shadow-md'>
                 <div className='flex h-full flex-col gap-4'>
-                    <h2 className='font-figtree text-2xl font-bold text-neutral-900'>{title}</h2>
+                    <div className='flex flex-row gap-2'>
+                        <h2 className='font-figtree text-2xl font-bold text-neutral-900'>{title}</h2>
+                        {showDiscountPercentage && (
+                            <div className='items-center justify-center rounded-full bg-[#1DC167]/15 px-3 py-1 font-medium text-[#1DC167]'>
+                                Save 75%
+                            </div>
+                        )}
+                    </div>
                     <p className='text-sm text-neutral-800'>{description as React.ReactNode}</p>
 
-                    <div className='flex items-start justify-start gap-1'>
-                        <span className='pt-2 text-lg font-medium text-neutral-900'>$</span>
-                        <span className='text-3xl font-bold text-neutral-900'>{price.amount}</span>
-                        {price.period && (
-                            <span className='text-md pt-2 font-medium text-neutral-900'>/{price.period}</span>
-                        )}
+                    <div className='flex items-start justify-start gap-2 md:justify-start'>
+                        {price && <Price price={price.amount} strikeThroughPrice={false} />}
+                        {strikeThroughPrice && <Price price={strikeThroughPrice.amount} strikeThroughPrice={true} />}
                     </div>
 
                     <button

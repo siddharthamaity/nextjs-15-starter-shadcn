@@ -96,7 +96,7 @@ export function CitizenshipSelector<T extends Record<string, any>>({
                                                 <span>{selectedCountry.name}</span>
                                             </span>
                                         ) : (
-                                            'Select citizenship'
+                                            'Select your citizenship'
                                         )}
                                         <CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
                                     </Button>
@@ -110,7 +110,7 @@ export function CitizenshipSelector<T extends Record<string, any>>({
                                         onValueChange={setSearch}
                                         className='h-12'
                                     />
-                                    <CommandList>
+                                    <CommandList className='max-h-[160px] overflow-y-auto'>
                                         <CommandEmpty>No country found.</CommandEmpty>
                                         <CommandGroup>
                                             {filteredCountries.map((country) => (
