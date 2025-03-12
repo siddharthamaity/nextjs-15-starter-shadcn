@@ -17,6 +17,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { ShieldCheck } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import * as z from 'zod';
 
 const formSchema = z.object({
@@ -86,6 +87,8 @@ export function TryNowView() {
     async function onSubmit(data: FormValues) {
         const isValid = await validateForm();
         if (!isValid) {
+            toast.error('Please fill in all required fields correctly');
+
             return;
         }
 
@@ -103,19 +106,30 @@ export function TryNowView() {
                 })
             });
 
-            if (!response.ok) {
-                throw new Error('Submission failed');
-            }
-
             const result = await response.json();
 
+            if (!response.ok) {
+                throw new Error('Registration failed Please try again later');
+            }
+
+            toast.success('Registration successful!', {
+                duration: 3000,
+                position: 'bottom-center'
+            });
+
             if (result.redirect_url) {
-                window.location.href = result.redirect_url;
+                setTimeout(() => {
+                    window.location.href = result.redirect_url;
+                }, 1000);
             } else {
                 router.push('/gmail-link');
             }
         } catch (error) {
             console.error('Form submission error:', error);
+            toast.error(error instanceof Error ? error.message : 'Something went wrong. Please try again.', {
+                duration: 5000,
+                position: 'bottom-center'
+            });
         } finally {
             setIsLoading(false);
         }

@@ -49,8 +49,6 @@ export async function POST(request: Request) {
         const userAgent = headersList.get('user-agent') || '';
         const ipAddress = getClientIp(headersList);
 
-        console.log('Pixed Id', process.env.NEXT_PUBLIC_FB_PIXEL_ID);
-
         const customerInfo: CustomerInfo = {
             email: body.email,
             whatsapp: body.phone,
@@ -58,10 +56,9 @@ export async function POST(request: Request) {
             pixel_id: process.env.NEXT_PUBLIC_FB_PIXEL_ID!,
             user_agent: userAgent,
             utm_params: body.utm_params,
-            ip_address: ipAddress
+            ip_address: ipAddress,
+            ...(body.testMode ? { test_mode: true } : {})
         };
-
-        console.log('Customer Info', customerInfo);
 
         const response = await fetch(API_URL, {
             method: 'POST',
@@ -71,21 +68,35 @@ export async function POST(request: Request) {
             },
             body: JSON.stringify({
                 customer_info: customerInfo,
-                test_mode: process.env.NODE_ENV === 'development'
+                ...(body.testMode ? { test_mode: true } : {})
             })
         });
 
-        if (!response.ok) {
-            throw new Error('Failed to submit registration');
+        const rawResponse = await response.text();
+        console.log('Raw Response:', rawResponse);
+
+        let responseData;
+        try {
+            responseData = JSON.parse(rawResponse);
+        } catch (parseError) {
+            return NextResponse.json({ error: 'Invalid response from server: ' + rawResponse }, { status: 500 });
         }
 
-        const data: TryNowSubmitResponse = await response.json();
+        if (!response.ok) {
+            return NextResponse.json(
+                { error: responseData.error || 'Registration failed' },
+                { status: response.status }
+            );
+        }
 
-        return NextResponse.json(data);
+        return NextResponse.json(responseData);
     } catch (error) {
         console.error('Error submitting registration:', error);
 
-        return NextResponse.json({ error: 'Failed to submit registration' }, { status: 500 });
+        return NextResponse.json(
+            { error: error instanceof Error ? error.message : 'Registration failed' },
+            { status: 500 }
+        );
     }
 }
 

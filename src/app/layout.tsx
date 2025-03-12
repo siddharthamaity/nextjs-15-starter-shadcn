@@ -7,6 +7,7 @@ import localFont from 'next/font/local';
 import { ThemeProvider } from 'next-themes';
 
 import '@/app/globals.css';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 import NavigationBar from '@/components/NavigationBar';
 import { Analytics } from '@/components/analytics';
 import { Toaster } from '@/components/ui/sooner';
@@ -103,12 +104,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <link rel='preload' href='/images/clouds-bg.png' as='image' type='image/png' />
             </head>
             <body>
-                {/* <ThemeProvider attribute='class'> */}
-                <NavigationBar />
-                {children}
+                <ErrorBoundary fallback={ErrorBoundary}>
+                    <NavigationBar />
+                    {children}
+                </ErrorBoundary>
                 <Toaster />
                 <Analytics />
-                {/* </ThemeProvider> */}
             </body>
         </html>
     );
