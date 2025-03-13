@@ -104,12 +104,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <link rel='preload' href='/images/clouds-bg.png' as='image' type='image/png' />
             </head>
             <body>
-                <ErrorBoundary fallback={ErrorBoundary}>
+                <ThemeProvider>
                     <NavigationBar />
                     {children}
-                </ErrorBoundary>
-                <Toaster />
-                <Analytics />
+                    <Toaster />
+                    <Analytics />
+                </ThemeProvider>
             </body>
         </html>
     );
