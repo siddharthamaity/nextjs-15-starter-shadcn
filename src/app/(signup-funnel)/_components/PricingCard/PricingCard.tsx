@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 
-import { CheckCircle, StarIcon, XCircle } from 'lucide-react';
+import { CheckCircle, ShieldCheck, StarIcon, XCircle } from 'lucide-react';
 
 interface PricingFeature {
     name: string;
@@ -62,8 +62,8 @@ export function PricingCard({
         <div className='relative'>
             {isPopular && (
                 <div className='absolute inset-x-0 -top-12 z-0 flex flex-row items-center justify-center gap-2 rounded-t-2xl bg-[#FFF6DF] pt-3 pb-6 font-semibold text-[#E3A400] drop-shadow-md'>
-                    <StarIcon className='size-4 text-[#E3A400]' />
-                    Most Popular
+                    <ShieldCheck className='size-4 text-[#E3A400]' />
+                    30-Day Price drop protection
                 </div>
             )}
 

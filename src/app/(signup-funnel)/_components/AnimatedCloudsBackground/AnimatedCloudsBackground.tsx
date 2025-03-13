@@ -1,54 +1,51 @@
 'use client';
 
-import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 import styles from './styles.module.css';
 
-interface AnimatedCloudsBackgroundProps {
-    topLayer?: boolean;
-    bottomLayer?: boolean;
-}
+const AnimatedCloudsBackground = () => {
+    const [imagesLoaded, setImagesLoaded] = useState(false);
 
-const AnimatedCloudsBackground = ({ topLayer = true, bottomLayer = true }: AnimatedCloudsBackgroundProps) => {
+    useEffect(() => {
+        const preloadImages = () => {
+            const img = new Image();
+            img.onload = () => setImagesLoaded(true);
+            // Try WebP first
+            img.src = '/images/clouds-bg.webp';
+            img.onerror = () => {
+                // Fallback to PNG if WebP not supported
+                img.src = '/images/clouds-bg.png';
+            };
+        };
+
+        preloadImages();
+    }, []);
+
     return (
-        <div className='fixed inset-0 h-screen w-full overflow-hidden bg-neutral-900'>
-            {/* Top cloud layer */}
-            {topLayer && (
-                <div className={`${styles['clouds-bg-top']} absolute top-0 h-screen w-full md:h-4/5`}>
-                    <Image
-                        src='/images/clouds-bg.png'
-                        alt='Background clouds'
-                        fill
-                        priority
-                        loading='eager'
-                        sizes='100vw'
-                        className='object-cover'
-                        quality={100}
-                        placeholder='blur'
-                        blurDataURL='data:image/jpeg;base64,...'
-                    />
-                    <div className='absolute inset-0 bg-gradient-to-t from-white from-0% via-white via-30% to-transparent to-50%' />
-                </div>
-            )}
+        <div className='fixed inset-0 h-screen w-full overflow-hidden bg-[rgb(160,200,238)]'>
+            {/* Static background for mobile */}
+            <div className='absolute inset-0 md:hidden'>
+                <div
+                    className={`size-full bg-cover bg-center transition-opacity duration-1000 ${
+                        imagesLoaded ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    style={{
+                        backgroundImage: "url('/images/clouds-bg.webp'), url('/images/clouds-bg.png')"
+                    }}
+                />
+                {imagesLoaded && (
+                    <div className='absolute inset-0 bg-gradient-to-t from-white from-0% via-white via-30% to-transparent to-50% transition-opacity duration-500' />
+                )}
+            </div>
 
-            {/* Bottom cloud layer */}
-            {bottomLayer && (
-                <div className={`${styles['clouds-bg-bottom']} absolute bottom-0 hidden h-1/5 w-full md:block`}>
-                    <Image
-                        src='/images/clouds-bg.png'
-                        alt='Background clouds'
-                        fill
-                        priority
-                        loading='eager'
-                        sizes='100vw'
-                        className='object-cover'
-                        quality={100}
-                        placeholder='blur'
-                        blurDataURL='data:image/jpeg;base64,...'
-                    />
-                    <div className='absolute inset-0 bg-gradient-to-b from-white from-0% via-white via-15% to-transparent to-100%' />
-                </div>
-            )}
+            {/* Animated clouds for md and up */}
+            <div
+                className={`${styles['clouds-bg']} absolute inset-0 hidden transition-opacity duration-1000 md:block ${
+                    imagesLoaded ? 'opacity-100' : 'opacity-0'
+                }`}>
+                <div className='absolute inset-0 bg-gradient-to-t from-white from-0% via-white via-30% to-transparent to-50% transition-opacity duration-500' />
+            </div>
         </div>
     );
 };

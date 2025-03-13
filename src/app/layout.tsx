@@ -50,7 +50,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 geistMono.variable,
                 figtree.variable,
                 'bg-background text-foreground overscroll-none antialiased'
-            )}>
+            )}
+            suppressHydrationWarning>
             <head>
                 {/* Standard icons */}
                 <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
@@ -101,10 +102,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 {/* PWA manifest */}
                 <link rel='manifest' href='/site.webmanifest' />
 
-                <link rel='preload' href='/images/clouds-bg.png' as='image' type='image/png' />
+                {/* Preload critical images */}
+                <link
+                    rel='preload'
+                    href='/images/clouds-bg.webp'
+                    as='image'
+                    type='image/webp'
+                    fetchPriority='high'
+                    imageSizes='(max-width: 768px) 100vw, 1920px'
+                />
+                {/* Fallback preload for browsers without WebP support */}
+                <link
+                    rel='preload'
+                    href='/images/clouds-bg.png'
+                    as='image'
+                    type='image/png'
+                    fetchPriority='high'
+                    imageSizes='(max-width: 768px) 100vw, 1920px'
+                />
             </head>
             <body>
-                <ThemeProvider>
+                <ThemeProvider attribute='class' defaultTheme='light' enableSystem={false} disableTransitionOnChange>
                     <NavigationBar />
                     {children}
                     <Toaster />

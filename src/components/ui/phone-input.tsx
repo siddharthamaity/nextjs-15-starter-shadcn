@@ -42,7 +42,6 @@ export function PhoneInput({
     // Get US as default or fallback to first country
     const defaultCountry = React.useMemo(() => {
         const country = countries.find((c) => c.code === 'US') || countries[0];
-        console.log('Default country:', country);
 
         return country;
     }, []);
@@ -52,19 +51,16 @@ export function PhoneInput({
 
     // Sort and filter countries
     const filteredCountries = React.useMemo(() => {
-        console.log('Filtering countries. Search term:', search);
         const usCountry = countries.find((c) => c.code === 'US');
         const otherCountries = countries.filter((c) => c.code !== 'US').sort((a, b) => a.name.localeCompare(b.name));
 
         const allCountries = usCountry ? [usCountry, ...otherCountries] : otherCountries;
-        console.log('All sorted countries:', allCountries);
 
         if (!search) return allCountries;
 
         const result = allCountries.filter((country) =>
             `${country.name} ${country.code} ${country.dial_code}`.toLowerCase().includes(search.toLowerCase())
         );
-        console.log('Filtered results:', result);
 
         return result;
     }, [search]);

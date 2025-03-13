@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -15,6 +16,12 @@ import Cookies from 'js-cookie';
 interface GmailLinkViewProps {
     initialStateId: string | null;
 }
+
+// Dynamically import the checkbox notice
+const CheckboxNotice = dynamic(() => import('./CheckboxNotice').then((mod) => mod.CheckboxNotice), {
+    ssr: false,
+    loading: () => <div className='mt-8 h-[200px] animate-pulse rounded-lg bg-white/10' />
+});
 
 export function GmailLinkView({ initialStateId }: GmailLinkViewProps) {
     const [stateId, setStateId] = useState<string | null>(initialStateId);
@@ -100,19 +107,8 @@ export function GmailLinkView({ initialStateId }: GmailLinkViewProps) {
                     <span>When connecting, remember to check the first checkbox as indicated below</span>
                 </div>
 
-                {/* Checkbox notice image */}
-                <div className='mt-8 text-center text-sm text-white/80'>
-                    <Image
-                        src='/images/notice-checkbox.png'
-                        alt='Dont forget checkbox'
-                        width={328}
-                        height={200}
-                        className='w-[328px] rounded-lg'
-                    />
-                </div>
-                <div className='font-figtree mt-4 max-w-sm text-center text-xs font-light text-neutral-900/90'>
-                    We'll only tab into your Gmail to pull out your travel reservations, nothing else is shared
-                </div>
+                {/* Load checkbox notice immediately since it's above the fold */}
+                <CheckboxNotice />
             </div>
         </div>
     );

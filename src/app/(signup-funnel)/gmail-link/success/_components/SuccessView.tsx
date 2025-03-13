@@ -74,17 +74,16 @@ export function SuccessView() {
     };
 
     return (
-        <div className='relative z-10 mt-3 flex w-full flex-1 flex-col items-center px-4 pb-12 md:py-6'>
-            <div className='mb-6 flex w-full items-center justify-center'>
-                <IconNewWhite className='mt-6 h-9 w-auto max-w-md md:mt-0' />
+        <div className='flex min-h-screen flex-col items-center px-4 py-6'>
+            <IconNewWhite className='mt-6 h-9 w-auto max-w-md md:mt-0' />
+
+            <div className='mt-12 flex w-full max-w-xl flex-col items-center text-center'>
+                <GradientShadowHeading>Your email is verified!</GradientShadowHeading>
+                <p className='mt-4 text-neutral-600'>Choose your plan to start saving money on your trips</p>
             </div>
 
-            <div className='mt-6 flex w-full flex-col items-center justify-center'>
-                <GradientShadowHeading>Email connected! Next, choose a plan to continue:</GradientShadowHeading>
-            </div>
-
-            <div className='relative z-10 w-full px-4 md:mt-12 md:px-6'>
-                <div className='mx-auto mt-20 grid max-w-4xl gap-6 md:grid-cols-2'>
+            <div className='mt-8 grid w-full max-w-5xl grid-cols-1 gap-6 px-4 md:grid-cols-2 lg:px-0'>
+                <div className='relative'>
                     <PricingCard
                         title='Auto Refunds'
                         description={
@@ -104,18 +103,17 @@ export function SuccessView() {
                         error={error}
                         showDiscountPercentage={true}
                     />
-
-                    <PricingCard
-                        title='Free'
-                        description='Get alerts when prices drop, then talk to
-                                airlines or hotels to get your money back'
-                        features={features}
-                        buttonText='Choose free'
-                        buttonAction={handleFreePlan}
-                        variant='secondary'
-                        showDiscountPercentage={false}
-                    />
                 </div>
+                <PricingCard
+                    title='Free'
+                    description='Get alerts when prices drop, then talk to
+                            airlines or hotels to get your money back'
+                    features={features}
+                    buttonText='Choose free'
+                    buttonAction={handleFreePlan}
+                    variant='secondary'
+                    showDiscountPercentage={false}
+                />
             </div>
         </div>
     );

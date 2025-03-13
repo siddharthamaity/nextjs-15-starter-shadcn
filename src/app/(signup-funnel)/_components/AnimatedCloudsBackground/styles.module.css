@@ -25,3 +25,41 @@
         transform: scale(1.2);
     }
 }
+
+/* Animation styles only apply to md breakpoint and up */
+@media (min-width: 768px) {
+    .clouds-bg {
+        /* Modern browsers - Try WebP first */
+        background-image: url('/images/clouds-bg.webp');
+        /* Fallback for browsers that don't support WebP */
+        background-image: image-set(
+            url('/images/clouds-bg.webp') type('image/webp'),
+            url('/images/clouds-bg.png') type('image/png')
+        );
+        /* Legacy fallback */
+        @supports not (background-image: image-set(url('') type('image/webp'))) {
+            background-image: url('/images/clouds-bg.png');
+        }
+        background-size: cover;
+        background-position: center;
+        animation: zoomInOut 20s ease-in-out infinite;
+        will-change: transform;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+    }
+
+    @keyframes zoomInOut {
+        0% {
+            transform: scale(1.5);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1.5);
+            opacity: 1;
+        }
+    }
+}

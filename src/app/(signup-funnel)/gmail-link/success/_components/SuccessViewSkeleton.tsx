@@ -1,18 +1,16 @@
 import IconNewWhite from '@/components/Icon/IconNewWhite';
 import { Skeleton } from '@/components/ui/skeleton';
 
-export function LoadingSkeleton() {
+export function SuccessViewSkeleton() {
     return (
         <div className='flex min-h-screen flex-col items-center px-4 py-6'>
             <IconNewWhite className='mt-6 h-9 w-auto max-w-md md:mt-0' />
 
-            {/* Title and description area */}
             <div className='mt-12 flex w-full max-w-xl flex-col items-center text-center'>
                 <Skeleton className='h-8 w-3/4 max-w-lg' />
                 <Skeleton className='mt-4 h-4 w-1/2 max-w-md' />
             </div>
 
-            {/* Pricing cards container */}
             <div className='mt-8 grid w-full max-w-5xl grid-cols-1 gap-6 px-4 md:grid-cols-2 lg:px-0'>
                 {/* Premium card */}
                 <div className='h-[520px] w-full rounded-xl border border-neutral-200 bg-white p-8'>
