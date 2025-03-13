@@ -102,13 +102,11 @@ export function GmailLinkView({ initialStateId }: GmailLinkViewProps) {
                     </div>
                 )}
 
-                <div className='font-figtree mt-4 max-w-sm text-center text-xs font-light text-neutral-900/90'>
-                    <span className='font-bold uppercase'>Important: </span>
-                    <span>When connecting, remember to check the first checkbox as indicated below</span>
-                </div>
-
                 {/* Load checkbox notice immediately since it's above the fold */}
                 <CheckboxNotice />
+                <div className='font-figtree mt-4 max-w-sm text-center text-xs font-light text-neutral-900/90'>
+                    We'll only tab into your Gmail to pull out your travel reservations, nothing else is shared
+                </div>
             </div>
         </div>
     );
