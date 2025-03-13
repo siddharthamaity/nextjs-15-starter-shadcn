@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useState } from 'react';
 
 import { WhatsApp } from '@/components/Icon/IconWhatsApp';
 import { Button } from '@/components/ui/button';
@@ -36,8 +37,8 @@ export function PhoneInput({
     showWhatsAppIcon,
     ...props
 }: PhoneInputProps) {
-    const [open, setOpen] = React.useState(false);
-    const [search, setSearch] = React.useState('');
+    const [open, setOpen] = useState(false);
+    const [search, setSearch] = useState('');
 
     // Get US as default or fallback to first country
     const defaultCountry = React.useMemo(() => {
@@ -56,13 +57,31 @@ export function PhoneInput({
 
         const allCountries = usCountry ? [usCountry, ...otherCountries] : otherCountries;
 
-        if (!search) return allCountries;
+        const filterCountries = (search: string) => {
+            if (!search) return allCountries;
+            const searchTerm = search.toLowerCase().trim();
 
-        const result = allCountries.filter((country) =>
-            `${country.name} ${country.code} ${country.dial_code}`.toLowerCase().includes(search.toLowerCase())
-        );
+            return allCountries.filter((country) => {
+                const searchableText = [
+                    country.name,
+                    country.code,
+                    country.dial_code,
+                    country.name.toLowerCase().replace(/\s+/g, ''), // Remove spaces
+                    country.name.toLowerCase().slice(0, 3) // First 3 letters
+                ]
+                    .join(' ')
+                    .toLowerCase();
 
-        return result;
+                const isMatch = searchableText.includes(searchTerm);
+
+                return isMatch;
+            });
+        };
+
+        // Log the results
+        const results = filterCountries(search);
+
+        return results;
     }, [search]);
 
     return (
@@ -132,7 +151,7 @@ export function PhoneInput({
                                 <PopoverContent className='font-figtree w-[300px] p-0' align='start'>
                                     <Command className='font-figtree'>
                                         <CommandInput
-                                            placeholder='Search country...'
+                                            placeholder='Type Name or Code...'
                                             value={search}
                                             onValueChange={setSearch}
                                             className='font-figtree'
@@ -143,7 +162,7 @@ export function PhoneInput({
                                                 {filteredCountries.map((country) => (
                                                     <CommandItem
                                                         key={country.code}
-                                                        value={country.code}
+                                                        value={country.name}
                                                         onSelect={() => handleCountryChange(country)}>
                                                         <div className='flex w-full items-center gap-2'>
                                                             <span className='text-base'>{country.flag}</span>
