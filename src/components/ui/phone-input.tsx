@@ -148,15 +148,16 @@ export function PhoneInput({
                                         <CaretSortIcon className='ml-0 h-4 w-4 shrink-0 opacity-50 md:ml-2' />
                                     </Button>
                                 </PopoverTrigger>
-                                <PopoverContent className='font-figtree w-[300px] p-0' align='start'>
+                                <PopoverContent className='font-figtree w-[300px] p-0 drop-shadow-md' align='start'>
                                     <Command className='font-figtree'>
                                         <CommandInput
-                                            placeholder='Type Name or Code...'
+                                            placeholder='Search country...'
                                             value={search}
                                             onValueChange={setSearch}
                                             className='font-figtree'
+                                            autoFocus={false}
                                         />
-                                        <CommandList>
+                                        <CommandList className='max-h-[120px] w-full overflow-y-auto'>
                                             <CommandEmpty>No country found.</CommandEmpty>
                                             <CommandGroup className='max-h-[120px] overflow-y-auto'>
                                                 {filteredCountries.map((country) => (
@@ -187,7 +188,7 @@ export function PhoneInput({
                                 </PopoverContent>
                             </Popover>
                             {showWhatsAppIcon && (
-                                <WhatsApp className='absolute top-1/2 right-4 size-5 -translate-y-1/2 opacity-20' />
+                                <WhatsApp className='absolute top-1/2 right-4 size-5 -translate-y-1/2 text-green-500 opacity-40' />
                             )}
                             <FormControl>
                                 <Input

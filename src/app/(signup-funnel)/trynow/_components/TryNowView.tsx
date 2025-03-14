@@ -122,7 +122,7 @@ export function TryNowView() {
                     window.location.href = result.redirect_url;
                 }, 1000);
             } else {
-                router.push('/gmail-link');
+                window.location.href = 'https://heyascend.com/success';
             }
         } catch (error) {
             console.error('Form submission error:', error);
@@ -196,8 +196,8 @@ export function TryNowView() {
                                 className='h-16 py-2'
                             />
 
-                            <div className='mt-2 text-xs text-neutral-900'>
-                                Citizenship is required by hotels & airlines due to international travel restrictions. *
+                            <div className='mt-2 ml-2 text-xs text-neutral-900'>
+                                Citizenship is required by hotels & airlines due to international travel restrictions.
                             </div>
 
                             <FormField

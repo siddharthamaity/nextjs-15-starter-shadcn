@@ -102,7 +102,7 @@ export function CitizenshipSelector<T extends Record<string, any>>({
                                     </Button>
                                 </FormControl>
                             </PopoverTrigger>
-                            <PopoverContent className='w-[300px] p-0' align='start'>
+                            <PopoverContent className='w-full max-w-[300px] p-0 drop-shadow-md' align='start'>
                                 <Command>
                                     <CommandInput
                                         placeholder='Search country...'
@@ -110,7 +110,7 @@ export function CitizenshipSelector<T extends Record<string, any>>({
                                         onValueChange={setSearch}
                                         className='h-12'
                                     />
-                                    <CommandList className='max-h-[160px] overflow-y-auto'>
+                                    <CommandList className='max-h-[160px] w-full overflow-y-auto'>
                                         <CommandEmpty>No country found.</CommandEmpty>
                                         <CommandGroup>
                                             {filteredCountries.map((country) => (
