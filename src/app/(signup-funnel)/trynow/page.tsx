@@ -12,12 +12,35 @@ export const metadata: Metadata = {
     title: 'Try Ascend Now | Save Money on Trips'
 };
 
-export default function TryNowPage() {
+async function getCustomerInfo(stateId: string | null) {
+    if (!stateId) return null;
+
+    try {
+        const response = await fetch(`https://email.ascend.travel/gmail/import/lookup/${stateId}`, {
+            method: 'GET',
+            headers: {
+                'X-API-KEY': process.env.PICKS_BACKEND_API_KEY!
+            }
+        });
+
+        if (!response.ok) return null;
+
+        return response.json();
+    } catch (error) {
+        console.error('Error fetching customer info:', error);
+
+        return null;
+    }
+}
+
+export default async function TryNowPage({ searchParams }: { searchParams: { state_id?: string } }) {
+    const customerInfo = await getCustomerInfo(searchParams.state_id ?? null);
+
     return (
         <div className='relative min-h-screen bg-neutral-900'>
             <AnimatedCloudsBackground />
             <Suspense fallback={<LoadingSkeleton />}>
-                <TryNowView />
+                <TryNowView initialData={customerInfo} />
             </Suspense>
             <CopyrightFooter />
         </div>

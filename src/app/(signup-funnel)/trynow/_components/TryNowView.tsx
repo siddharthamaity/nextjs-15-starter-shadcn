@@ -36,7 +36,14 @@ interface FormValues {
     terms: boolean;
 }
 
-export function TryNowView() {
+interface TryNowViewProps {
+    initialData?: {
+        email_address?: string;
+        customer_phone?: string;
+    } | null;
+}
+
+export function TryNowView({ initialData }: TryNowViewProps) {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +64,7 @@ export function TryNowView() {
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            email: '',
+            email: initialData?.email_address || '',
             phone: '',
             citizenship: '',
             terms: false

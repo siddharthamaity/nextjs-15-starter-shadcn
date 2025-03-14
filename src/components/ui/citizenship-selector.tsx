@@ -10,7 +10,7 @@ import { countries } from '@/lib/phone-codes';
 import { cn } from '@/lib/utils';
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
 
-import { Control, Path } from 'react-hook-form';
+import { Control, Path, PathValue } from 'react-hook-form';
 
 interface Country {
     name: string;
@@ -30,27 +30,25 @@ export function CitizenshipSelector<T extends Record<string, any>>({
     control,
     name,
     label,
-    defaultCountry,
+    defaultCountry = 'US',
     className
 }: CitizenshipSelectorProps<T>) {
     const [open, setOpen] = React.useState(false);
     const [search, setSearch] = React.useState('');
 
-    // Update citizenship when defaultCountry changes
+    // Set initial US value
     React.useEffect(() => {
-        if (defaultCountry) {
-            const country = countries.find((c) => c.code === defaultCountry);
-            if (country) {
-                const field = control._fields[name];
-                if (field?._f === undefined) {
-                    control._formValues[name] = country.code;
-                    control._updateFieldArray(name);
-                }
+        const field = control._fields[name] as { value?: string };
+        if (!field?.value) {
+            const usCountry = countries.find((c) => c.code === 'US');
+            if (usCountry) {
+                control._formValues[name] = usCountry.code;
+                control._updateFieldArray(name);
             }
         }
-    }, [defaultCountry, control, name]);
+    }, [control, name]);
 
-    // Filter countries based on search
+    // Filter countries with US first
     const filteredCountries = React.useMemo(() => {
         const usCountry = countries.find((c) => c.code === 'US');
         const otherCountries = countries.filter((c) => c.code !== 'US').sort((a, b) => a.name.localeCompare(b.name));
@@ -68,10 +66,11 @@ export function CitizenshipSelector<T extends Record<string, any>>({
         <FormField
             control={control}
             name={name}
+            defaultValue={'US' as PathValue<T, Path<T>>}
             render={({ field }) => {
                 // Get selected country info for display
                 const selectedCountry = React.useMemo(() => {
-                    if (!field.value) return null;
+                    if (!field.value) return countries.find((c) => c.code === 'US');
 
                     return countries.find((c) => c.code === field.value);
                 }, [field.value]);

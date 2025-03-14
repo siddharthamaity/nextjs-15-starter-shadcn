@@ -22,9 +22,9 @@ export default function NotFound() {
                 </div>
 
                 <Link
-                    href='/trynow'
+                    href='/'
                     className='mt-8 rounded-lg bg-neutral-900 px-6 py-3 font-medium text-white transition-colors hover:bg-neutral-800'>
-                    Go to Try Now
+                    Go to Home
                 </Link>
             </div>
 

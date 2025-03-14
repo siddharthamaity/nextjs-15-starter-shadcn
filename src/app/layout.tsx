@@ -7,6 +7,7 @@ import localFont from 'next/font/local';
 import { ThemeProvider } from 'next-themes';
 
 import '@/app/globals.css';
+import { CookiesBanner } from '@/components/CookiesBanner';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import NavigationBar from '@/components/NavigationBar';
 import { Analytics } from '@/components/analytics';
@@ -127,6 +128,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     {children}
                     <Toaster />
                     <Analytics />
+                    <CookiesBanner />
                 </ThemeProvider>
             </body>
         </html>
