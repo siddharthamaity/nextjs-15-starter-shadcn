@@ -67,9 +67,7 @@ export function GmailLinkView({ initialStateId }: GmailLinkViewProps) {
 
                 {/* Text content */}
                 <div className='mt-6 flex w-full flex-col items-center justify-center'>
-                    <GradientShadowHeading>
-                        Try Ascend for free and start saving money on your trips
-                    </GradientShadowHeading>
+                    <GradientShadowHeading>Try Ascend for free to start saving money on travel</GradientShadowHeading>
                     <p className='font-figtree mt-4 max-w-sm text-center text-sm text-neutral-900'>
                         Connect your email to automatically import your reservations:
                     </p>
