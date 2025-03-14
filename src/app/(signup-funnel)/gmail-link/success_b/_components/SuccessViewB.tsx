@@ -9,7 +9,7 @@ import IconNewWhite from '@/components/Icon/IconNewWhite';
 import GradientShadowHeading from '../../../_components/GradientShadowHeading/GradientShadowHeading';
 import { ShieldCheck } from 'lucide-react';
 
-export function SuccessView() {
+export function SuccessViewB() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const stateId = searchParams.get('state_id');
@@ -73,31 +73,44 @@ export function SuccessView() {
 
             <div className='relative z-10 w-full px-4 md:mt-12 md:px-6'>
                 <div className='mx-auto mt-20 grid max-w-4xl gap-6 md:grid-cols-2'>
-                    {/* Pro Plan Card */}
+                    {/* Annual Plan Card */}
                     <div className='relative'>
-                        <div className='absolute inset-x-0 -top-12 z-0 flex flex-row items-center justify-center gap-2 rounded-t-2xl bg-[#FFF6DF] pt-3 pb-6 font-semibold text-[#E3A400]'>
-                            <ShieldCheck className='mb-0.5 size-5 text-[#E3A400]' />
-                            30-Day Refund Guarantee
-                        </div>
-
                         <div className='relative z-10 rounded-2xl bg-white p-6 drop-shadow-md'>
                             <div className='flex h-full flex-col gap-4'>
-                                <h2 className='font-figtree text-2xl font-bold'>We do the work</h2>
-                                <p className='text-sm text-neutral-800'>
+                                <div className='justify-left mt-4 flex flex-row items-center gap-2 text-xs font-semibold text-[#E3A400]'>
+                                    <ShieldCheck className='mb-0.5 size-4 text-[#E3A400]' />
+                                    30-Day Refund Guarantee
+                                </div>
+
+                                <h2 className='font-figtree text-2xl font-bold'>Annual Plan</h2>
+                                <p className='text-sm text-neutral-900'>
+                                    <span className='font-semibold text-neutral-950'>We do all the work: </span>
                                     We sit on hold on the phone with airlines to get the price difference back if the
                                     prices drop.
                                 </p>
 
-                                <div className='flex items-start justify-start gap-1'>
-                                    <span className='font-figtree -mr-1 pt-2 text-xl font-bold text-neutral-900'>
-                                        $
-                                    </span>
-                                    <span className='text-3xl font-bold'>2.</span>
-                                    <span className='-ml-1 pt-2 text-xl font-bold'>99</span>
+                                <div className='flex flex-row gap-3'>
+                                    <div className='flex items-start justify-start gap-1'>
+                                        <span className='font-figtree -mr-1 pt-2 text-xl font-bold text-neutral-900'>
+                                            $
+                                        </span>
+                                        <span className='text-3xl font-bold'>2.</span>
+                                        <span className='-ml-1 pt-2 text-xl font-bold'>99</span>
+                                    </div>
+                                    <div className='flex items-start justify-start gap-1 line-through opacity-20'>
+                                        <span className='font-figtree -mr-1 pt-2 text-xl font-bold text-neutral-900'>
+                                            $
+                                        </span>
+                                        <span className='text-3xl font-bold'>9.</span>
+                                        <span className='-ml-1 pt-2 text-xl font-bold'>99</span>
+                                    </div>
                                 </div>
-                                <div className='text-neutral-1000 -mt-3 text-sm'>
+                                <div className='text-neutral-1000 -mt-3 flex flex-row items-center gap-2 text-sm'>
                                     <span className='font-semibold'>Per month, </span>
                                     billed yearly
+                                    <div className='w-fit rounded-full bg-[#1DC167]/15 px-2 py-0.5 text-xs font-bold text-[#1DC167]'>
+                                        Save 75%
+                                    </div>
                                 </div>
 
                                 <button
@@ -118,22 +131,32 @@ export function SuccessView() {
                         </div>
                     </div>
 
-                    {/* Free Plan Card */}
+                    {/* Monthly Plan Card */}
                     <div className='rounded-2xl bg-white p-6 drop-shadow-md'>
                         <div className='flex h-full flex-col gap-4'>
-                            <h2 className='font-figtree text-2xl font-bold'>You do the work yourself</h2>
+                            <div className='justify-left mt-4 flex flex-row items-center gap-2 text-xs font-semibold text-[#E3A400]'>
+                                <ShieldCheck className='mb-0.5 size-4 text-[#E3A400]' />
+                                30-Day Refund Guarantee
+                            </div>
+                            <h2 className='font-figtree text-2xl font-bold'>Monthly Plan</h2>
                             <p className='text-neutral-1000 text-sm'>
                                 You sit on hold on the phone with airlines to get the price difference back if the
                                 prices drop.
                             </p>
 
-                            <div className='flex items-baseline gap-1'>
-                                <span className='text-3xl font-bold'>Free</span>
+                            <div className='flex items-start justify-start gap-1'>
+                                <span className='font-figtree -mr-1 pt-2 text-xl font-bold text-neutral-900'>$</span>
+                                <span className='text-3xl font-bold'>8.</span>
+                                <span className='-ml-1 pt-2 text-xl font-bold'>99</span>
+                            </div>
+                            <div className='text-neutral-1000 -mt-3 flex flex-row items-center gap-2 text-sm'>
+                                <span className='font-semibold'>Per month, </span>
+                                billed monthly
                             </div>
 
                             <button
                                 onClick={handleFreePlan}
-                                className='mt-6 w-full rounded-lg border-2 border-[#1DC167] bg-white py-2.5 font-semibold text-[#1DC167] transition-all hover:bg-[#1DC167]/10'>
+                                className='w-full rounded-lg border-2 border-[#1DC167] bg-white py-2.5 font-semibold text-[#1DC167] transition-all hover:bg-[#1DC167]/10'>
                                 Choose Option
                             </button>
                         </div>

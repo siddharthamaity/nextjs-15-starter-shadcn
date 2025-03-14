@@ -2,44 +2,26 @@ import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 interface CustomerInfo {
-    email?: string;
+    email: string;
     whatsapp: string;
     citizenship: string;
     pixel_id: string;
     user_agent: string;
     utm_params: string;
+    ip_address: string;
     state_id?: string;
     test_mode?: boolean;
-    ip_address?: string;
-}
-
-interface TryNowSubmitResponse {
-    redirect_url?: string;
 }
 
 const API_URL = 'https://decision-engine.onrender.com/gmail-direct-connect/web_signup';
 
 function getClientIp(headersList: Headers): string {
-    // Try x-forwarded-for first
     const forwardedFor = headersList.get('x-forwarded-for');
     if (forwardedFor) {
         return forwardedFor.split(',')[0].trim();
     }
 
-    // Try x-real-ip
-    const realIp = headersList.get('x-real-ip');
-    if (realIp) {
-        return realIp.trim();
-    }
-
-    // Try other common headers
-    const cfConnectingIp = headersList.get('cf-connecting-ip');
-    if (cfConnectingIp) {
-        return cfConnectingIp.trim();
-    }
-
-    // Fallback to localhost
-    return '127.0.0.1';
+    return headersList.get('x-real-ip') || '127.0.0.1';
 }
 
 export async function POST(request: Request) {
@@ -55,46 +37,71 @@ export async function POST(request: Request) {
             citizenship: body.citizenship,
             pixel_id: process.env.NEXT_PUBLIC_FB_PIXEL_ID!,
             user_agent: userAgent,
-            utm_params: body.utm_params,
+            utm_params: body.utm_params || '',
             ip_address: ipAddress,
+            state_id: body.state_id,
             ...(body.testMode ? { test_mode: true } : {})
         };
+
+        const payload = {
+            customer_info: customerInfo
+        };
+
+        console.log('Sending payload:', payload);
 
         const response = await fetch(API_URL, {
             method: 'POST',
             headers: {
-                'X-API-KEY': process.env.PICKS_BACKEND_API_KEY!,
+                'X-API-KEY': '2835f35c8f0ea281lbaaebac8b5385d0358b58096a82bc05b0188eac7333e9ce',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                customer_info: customerInfo,
-                ...(body.testMode ? { test_mode: true } : {})
-            })
+            body: JSON.stringify(payload)
         });
 
-        const rawResponse = await response.text();
-        console.log('Raw Response:', rawResponse);
+        const responseText = await response.text();
+        console.log('Response status:', response.status);
+        console.log('Response text:', responseText);
 
-        let responseData;
-        try {
-            responseData = JSON.parse(rawResponse);
-        } catch (parseError) {
-            return NextResponse.json({ error: 'Invalid response from server: ' + rawResponse }, { status: 500 });
+        // Handle non-JSON responses
+        if (response.status === 200) {
+            if (responseText === 'Customer already onboarded') {
+                return NextResponse.json({
+                    success: true,
+                    message: responseText
+                });
+            }
+
+            // Try to parse JSON if it's not the known text response
+            try {
+                const responseData = JSON.parse(responseText);
+
+                return NextResponse.json(responseData);
+            } catch {
+                // If it's a 200 but not JSON, assume it's a success message
+                return NextResponse.json({
+                    success: true,
+                    message: responseText
+                });
+            }
         }
 
-        if (!response.ok) {
-            return NextResponse.json(
-                { error: responseData.error || 'Registration failed' },
-                { status: response.status }
-            );
-        }
-
-        return NextResponse.json(responseData);
+        // Handle error responses
+        return NextResponse.json(
+            {
+                success: false,
+                error: 'Registration failed',
+                message: responseText
+            },
+            { status: response.status }
+        );
     } catch (error) {
         console.error('Error submitting registration:', error);
 
         return NextResponse.json(
-            { error: error instanceof Error ? error.message : 'Registration failed' },
+            {
+                success: false,
+                error: error instanceof Error ? error.message : 'Registration failed'
+            },
             { status: 500 }
         );
     }
