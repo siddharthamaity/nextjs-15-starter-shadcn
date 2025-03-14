@@ -34,9 +34,9 @@ const figtree = Figtree({
 export const metadata: Metadata = {
     title: 'Ascend Travel',
     description: 'Save money on your trips with Ascend',
-    applicationName: 'Ascend',
+    applicationName: 'Ascend Travel',
     appleWebApp: {
-        title: 'Ascend',
+        title: 'Ascend Travel',
         capable: true,
         statusBarStyle: 'default'
     }
@@ -93,7 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                 {/* Apple specific */}
                 <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
-                <meta name='apple-mobile-web-app-title' content='Ascend' />
+                <meta name='apple-mobile-web-app-title' content='Ascend Travel' />
 
                 {/* Microsoft specific */}
                 <meta name='msapplication-config' content='/browserconfig.xml' />
