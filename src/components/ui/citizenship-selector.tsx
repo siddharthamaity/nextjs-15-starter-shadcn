@@ -36,17 +36,20 @@ export function CitizenshipSelector<T extends Record<string, any>>({
     const [open, setOpen] = React.useState(false);
     const [search, setSearch] = React.useState('');
 
-    // Set initial US value
+    // Modified useEffect to handle default value better
     React.useEffect(() => {
         const field = control._fields[name] as { value?: string };
-        if (!field?.value) {
-            const usCountry = countries.find((c) => c.code === 'US');
+        const formValue = control._formValues[name];
+
+        // Only set default if no value exists
+        if (!field?.value && !formValue && defaultCountry) {
+            const usCountry = countries.find((c) => c.code === defaultCountry);
             if (usCountry) {
                 control._formValues[name] = usCountry.code;
                 control._updateFieldArray(name);
             }
         }
-    }, [control, name]);
+    }, [control, name, defaultCountry]);
 
     // Filter countries with US first
     const filteredCountries = React.useMemo(() => {

@@ -66,7 +66,7 @@ export function TryNowView({ initialData }: TryNowViewProps) {
         defaultValues: {
             email: initialData?.email_address || '',
             phone: '',
-            citizenship: '',
+            citizenship: 'US',
             terms: false
         },
         mode: 'onBlur',
