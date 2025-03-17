@@ -93,7 +93,7 @@ export function SuccessView() {
                                         $
                                     </span>
                                     <span className='text-3xl font-bold'>2.</span>
-                                    <span className='-ml-1 pt-2 text-xl font-bold'>99</span>
+                                    <span className='-ml-1 pt-2 text-xl font-bold'>09</span>
                                 </div>
                                 <div className='text-neutral-1000 -mt-3 text-sm'>
                                     <span className='font-semibold'>Per month, </span>
