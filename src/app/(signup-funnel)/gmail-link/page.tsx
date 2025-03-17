@@ -4,6 +4,8 @@ import AnimatedCloudsBackground from '../_components/AnimatedCloudsBackground/An
 import CopyrightFooter from '../_components/CopyrightFooter';
 import { GmailLinkView } from './_components/GmailLinkView';
 
+export const dynamic = 'force-dynamic';
+
 async function getStateId() {
     try {
         const headersList = await headers();
