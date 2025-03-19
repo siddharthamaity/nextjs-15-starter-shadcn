@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /gmail-link
+Allow: /new-gmail-tips
+
+# Sitemaps
+Sitemap: https://ascend.travel/sitemap.xml 

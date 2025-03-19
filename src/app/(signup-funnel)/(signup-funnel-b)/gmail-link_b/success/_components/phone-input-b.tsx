@@ -1,0 +1,216 @@
+'use client';
+
+import * as React from 'react';
+import { useState } from 'react';
+
+import { WhatsApp } from '@/components/Icon/IconWhatsApp';
+import { Button } from '@/components/ui/button';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { countries } from '@/lib/phone-codes';
+import { cn } from '@/lib/utils';
+import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
+
+interface Country {
+    name: string;
+    flag: string;
+    code: string;
+    dial_code: string;
+}
+
+interface PhoneInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    control: any;
+    name: string;
+    label?: string | React.ReactNode;
+    onCountryChange?: (countryCode: string) => void;
+    showWhatsAppIcon?: boolean;
+}
+
+export function PhoneInput({
+    control,
+    name,
+    label,
+    className,
+    onCountryChange,
+    showWhatsAppIcon,
+    ...props
+}: PhoneInputProps) {
+    const [open, setOpen] = useState(false);
+    const [search, setSearch] = useState('');
+
+    // Get US as default or fallback to first country
+    const defaultCountry = React.useMemo(() => {
+        const country = countries.find((c) => c.code === 'US') || countries[0];
+
+        return country;
+    }, []);
+
+    const [selectedCountry, setSelectedCountry] = React.useState<Country>(defaultCountry);
+    const [localPhoneNumber, setLocalPhoneNumber] = React.useState('');
+
+    // Sort and filter countries
+    const filteredCountries = React.useMemo(() => {
+        const usCountry = countries.find((c) => c.code === 'US');
+        const otherCountries = countries.filter((c) => c.code !== 'US').sort((a, b) => a.name.localeCompare(b.name));
+
+        const allCountries = usCountry ? [usCountry, ...otherCountries] : otherCountries;
+
+        const filterCountries = (search: string) => {
+            if (!search) return allCountries;
+            const searchTerm = search.toLowerCase().trim();
+
+            return allCountries.filter((country) => {
+                const searchableText = [
+                    country.name,
+                    country.code,
+                    country.dial_code,
+                    country.name.toLowerCase().replace(/\s+/g, ''), // Remove spaces
+                    country.name.toLowerCase().slice(0, 3) // First 3 letters
+                ]
+                    .join(' ')
+                    .toLowerCase();
+
+                const isMatch = searchableText.includes(searchTerm);
+
+                return isMatch;
+            });
+        };
+
+        // Log the results
+        const results = filterCountries(search);
+
+        return results;
+    }, [search]);
+
+    return (
+        <FormField
+            control={control}
+            name={name}
+            render={({ field }) => {
+                const handlePaste = React.useCallback(
+                    (e: React.ClipboardEvent<HTMLInputElement>) => {
+                        e.preventDefault();
+                        const pastedText = e.clipboardData.getData('text');
+
+                        if (pastedText.startsWith('+')) {
+                            const matchingCountry = countries
+                                .filter((country) => pastedText.startsWith(country.dial_code))
+                                .sort((a, b) => b.dial_code.length - a.dial_code.length)[0];
+
+                            if (matchingCountry) {
+                                setSelectedCountry(matchingCountry);
+                                const numberWithoutCode = pastedText.slice(matchingCountry.dial_code.length);
+                                const cleanNumber = numberWithoutCode.replace(/[^\d\s()-]/g, '');
+                                setLocalPhoneNumber(cleanNumber);
+                                const countryCode = matchingCountry.dial_code.replace('+', '');
+                                field.onChange(`${countryCode}${cleanNumber}`);
+
+                                return;
+                            }
+                        }
+
+                        const cleanNumber = pastedText.replace(/[^\d\s()-]/g, '');
+                        setLocalPhoneNumber(cleanNumber);
+                        const countryCode = selectedCountry.dial_code.replace('+', '');
+                        field.onChange(`${countryCode}${cleanNumber}`);
+                    },
+                    [selectedCountry]
+                );
+
+                const handleCountryChange = (country: Country) => {
+                    setSelectedCountry(country);
+                    setOpen(false);
+                    onCountryChange?.(country.code);
+                    const countryCode = country.dial_code.replace('+', '');
+                    field.onChange(`${countryCode}${localPhoneNumber}`);
+                };
+
+                return (
+                    <FormItem className='flex flex-col gap-2'>
+                        {label && <FormLabel>{label}</FormLabel>}
+                        <div className='relative flex gap-0'>
+                            <Popover open={open} onOpenChange={setOpen}>
+                                <PopoverTrigger asChild>
+                                    <Button
+                                        variant='outline'
+                                        role='combobox'
+                                        aria-expanded={open}
+                                        className='h-12 w-fit justify-between rounded-r-none border-r-transparent pr-1'>
+                                        <div className='flex items-center'>
+                                            <span className='text-base'>{selectedCountry.flag}</span>
+                                            {/* <span className='text-sm'>{selectedCountry.code}</span>
+                                            <span className='text-muted-foreground text-xs'>
+                                                {selectedCountry.dial_code}
+                                            </span> */}
+                                        </div>
+                                    </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className='font-figtree w-[300px] p-0 drop-shadow-md' align='start'>
+                                    <Command className='font-figtree'>
+                                        <CommandInput
+                                            placeholder='Search country...'
+                                            value={search}
+                                            onValueChange={setSearch}
+                                            className='font-figtree'
+                                            autoFocus={false}
+                                        />
+                                        <CommandList className='max-h-[120px] w-full overflow-y-auto'>
+                                            <CommandEmpty>No country found.</CommandEmpty>
+                                            <CommandGroup className='max-h-[120px] overflow-y-auto'>
+                                                {filteredCountries.map((country) => (
+                                                    <CommandItem
+                                                        key={country.code}
+                                                        value={country.name}
+                                                        onSelect={() => handleCountryChange(country)}>
+                                                        <div className='flex w-full items-center gap-2'>
+                                                            <span className='text-base'>{country.flag}</span>
+                                                            <span className='text-sm'>{country.name}</span>
+                                                            <span className='text-muted-foreground text-sm'>
+                                                                {country.dial_code}
+                                                            </span>
+                                                        </div>
+                                                        <CheckIcon
+                                                            className={cn(
+                                                                'ml-auto h-4 w-4',
+                                                                selectedCountry.code === country.code
+                                                                    ? 'opacity-100'
+                                                                    : 'opacity-0'
+                                                            )}
+                                                        />
+                                                    </CommandItem>
+                                                ))}
+                                            </CommandGroup>
+                                        </CommandList>
+                                    </Command>
+                                </PopoverContent>
+                            </Popover>
+                            <div className='mt h-12 w-0 pt-2.5'>|</div>
+                            <FormControl>
+                                <Input
+                                    {...props}
+                                    type='tel'
+                                    className={cn(
+                                        'h-12 flex-1 rounded-l-none border-l-transparent pl-2 ring-0',
+                                        className
+                                    )}
+                                    value={localPhoneNumber}
+                                    placeholder='Number'
+                                    onPaste={handlePaste}
+                                    onChange={(e) => {
+                                        const value = e.target.value.replace(/[^\d\s()-]/g, '');
+                                        setLocalPhoneNumber(value);
+                                        const countryCode = selectedCountry.dial_code.replace('+', '');
+                                        field.onChange(`${countryCode}${value}`);
+                                    }}
+                                />
+                            </FormControl>
+                        </div>
+                        <FormMessage />
+                    </FormItem>
+                );
+            }}
+        />
+    );
+}

@@ -4,7 +4,14 @@ import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 
-export function CheckboxNotice() {
+export function CheckboxNotice(
+    props: { width?: number; height?: number; className?: string; showText?: boolean } = {
+        width: 328,
+        height: 200,
+        className: 'w-[328px] rounded-lg',
+        showText: true
+    }
+) {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -13,19 +20,21 @@ export function CheckboxNotice() {
 
     return (
         <>
-            <div className='font-figtree mt-4 max-w-sm text-center text-xs font-light text-neutral-900/90'>
-                <span className='font-bold uppercase'>Important: </span>
-                <span>When connecting, remember to check the first checkbox as indicated below</span>
-            </div>
+            {props.showText && (
+                <div className='font-figtree mt-4 max-w-sm text-center text-xs font-light text-neutral-900/90'>
+                    <span className='font-bold uppercase'>Important: </span>
+                    <span>When connecting, remember to check the first checkbox as indicated below</span>
+                </div>
+            )}
 
             {/* Checkbox notice image with eager loading */}
             <div id='checkbox-notice-container' className='mt-8 text-center text-sm text-white/80'>
                 <Image
                     src='/images/notice-checkbox.webp'
                     alt='Dont forget checkbox'
-                    width={328}
-                    height={200}
-                    className='w-[328px] rounded-lg'
+                    width={props.width}
+                    height={props.height}
+                    className={`rounded-lg ${props.className}`}
                     priority={true}
                     quality={75}
                     placeholder='blur'
