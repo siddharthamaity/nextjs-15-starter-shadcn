@@ -70,12 +70,12 @@ export function FlipCard({ onSubmit, frontContent }: FlipCardProps) {
     };
 
     return (
-        <div ref={cardRef} className={cn('perspective-1000 relative w-full', isFlipped ? 'h-[460px]' : 'h-[300px]')}>
+        <div ref={cardRef} className={cn('perspective-1000 relative w-full', isFlipped ? 'h-[460px]' : 'h-[290px]')}>
             <AnimatePresence>
                 {!isFlipped ? (
                     <motion.div
                         key='front'
-                        className='absolute h-full w-full rounded-2xl bg-white p-8 drop-shadow-md'
+                        className='absolute h-full w-full rounded-2xl bg-white px-6 pt-9 drop-shadow-md'
                         variants={cardVariants}
                         initial='front'
                         animate='front'
