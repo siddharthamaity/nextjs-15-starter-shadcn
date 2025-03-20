@@ -1,5 +1,7 @@
 # Next.js 15 Starter (shadcn) [[LIVE DEMO](https://nextjs-15-starter-shadcn.vercel.app/)]
 
+![MIT License](https://img.shields.io/badge/license-MIT-blue) [![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org) ![ESLint](https://img.shields.io/badge/code%20style-eslint-brightgreen) ![GitHub stars](https://img.shields.io/github/stars/siddharthamaity/nextjs-15-starter-shadcn?style=social) ![GitHub forks](https://img.shields.io/github/forks/siddharthamaity/nextjs-15-starter-shadcn?style=social) [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/siddharthamaity)
+
 *This is the Tailwind version for Next.js 15 Starter, you may be interested in other templates too -*
 - [**Next.js 15 Starter Core**](https://github.com/SiddharthaMaity/nextjs-15-starter-core)
 - [**Next.js 15 Starter with Tailwind CSS**](https://github.com/SiddharthaMaity/nextjs-15-starter-tailwind)
@@ -128,6 +130,9 @@ docker run -p 3000:3000 nextjs-starter-shadcn
 ### License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+### If you find the project helpful 
+[![Buy me a cofee](public/bmc-button.svg)](https://buymeacoffee.com/siddharthamaity)
 
 ---
 
