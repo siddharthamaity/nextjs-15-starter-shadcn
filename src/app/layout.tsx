@@ -10,7 +10,7 @@ import '@/app/globals.css';
 import { CookiesBanner } from '@/components/CookiesBanner';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import NavigationBar from '@/components/NavigationBar';
-import { Analytics } from '@/components/analytics';
+import { Analytics } from '@/components/analytics/analytics';
 import { Toaster } from '@/components/ui/sooner';
 import { cn } from '@/lib/utils';
 

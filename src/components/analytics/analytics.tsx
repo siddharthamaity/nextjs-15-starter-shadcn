@@ -4,6 +4,8 @@ import Script from 'next/script';
 
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 
+import { MetaPixel } from './MetaPixel';
+
 function LuckyOrange() {
     return (
         <Script
@@ -21,6 +23,7 @@ export function Analytics() {
         <>
             <VercelAnalytics />
             <LuckyOrange />
+            <MetaPixel />
         </>
     );
 }
