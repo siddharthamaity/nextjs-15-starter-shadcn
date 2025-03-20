@@ -131,9 +131,6 @@ docker run -p 3000:3000 nextjs-starter-shadcn
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-### If you find the project helpful 
-[![Buy me a cofee](public/bmc-button.svg)](https://buymeacoffee.com/siddharthamaity)
-
 ---
 
 <p style="text-align: center;"> With ❤️ from 🇮🇳 </p>
