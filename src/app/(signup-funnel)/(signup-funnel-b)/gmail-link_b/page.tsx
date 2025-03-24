@@ -52,9 +52,20 @@ export default function GmailLinkB() {
                 </p>
             </div>
 
+            <Link href={stateId ? `https://email.ascend.travel/gmail/import/start/${stateId}` : ''}>
             <div className='flex max-h-[200px] flex-col items-center justify-center gap-4 overflow-clip rounded-3xl pb-24'>
+                    {stateId && (
+                        <div
+                            onClick={() =>
+                                (window.location.href = `https://email.ascend.travel/gmail/import/start/${stateId}`)
+                            }
+                            className='cursor-pointer'>
                 <CheckboxNotice width={260} height={120} showText={false} />
             </div>
+                    )}
+                    {!stateId && <CheckboxNotice width={260} height={120} showText={false} />}
+                </div>
+            </Link>
 
             <div className='flex flex-1 flex-col items-center'>
                 {stateId ? (
