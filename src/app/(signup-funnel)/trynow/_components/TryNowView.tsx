@@ -44,22 +44,8 @@ interface TryNowViewProps {
 }
 
 export function TryNowView({ initialData }: TryNowViewProps) {
-    const router = useRouter();
     const searchParams = useSearchParams();
     const [isLoading, setIsLoading] = useState(false);
-    const [selectedPhoneCountry, setSelectedPhoneCountry] = useState<string | null>(null);
-
-    // Get UTM parameters
-    const getUtmParams = () => {
-        const utmParams = new URLSearchParams();
-        searchParams.forEach((value, key) => {
-            if (key.startsWith('utm_')) {
-                utmParams.append(key, value);
-            }
-        });
-
-        return utmParams.toString();
-    };
 
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
@@ -73,8 +59,6 @@ export function TryNowView({ initialData }: TryNowViewProps) {
         reValidateMode: 'onChange'
     });
 
-    const { email, phone, citizenship, terms } = form.watch();
-
     const validateForm = async () => {
         const isValid = await form.trigger();
 
@@ -82,7 +66,6 @@ export function TryNowView({ initialData }: TryNowViewProps) {
     };
 
     const handlePhoneCountryChange = (countryCode: string) => {
-        setSelectedPhoneCountry(countryCode);
         if (!form.getValues('citizenship')) {
             form.setValue('citizenship', countryCode, {
                 shouldValidate: true,
@@ -108,7 +91,6 @@ export function TryNowView({ initialData }: TryNowViewProps) {
                 },
                 body: JSON.stringify({
                     ...data,
-                    utm_params: getUtmParams(),
                     state_id: searchParams.get('state_id') || undefined
                 })
             });

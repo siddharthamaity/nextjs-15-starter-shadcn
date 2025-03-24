@@ -5,6 +5,7 @@ import { Suspense, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 import IconNewWhite from '@/components/Icon/IconNewWhite';
 import { FRAMER_LINKS } from '@/config/navigation';
@@ -27,6 +28,19 @@ export function GmailLinkView({ initialStateId }: GmailLinkViewProps) {
     const [stateId, setStateId] = useState<string | null>(initialStateId);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const searchParams = useSearchParams();
+
+    // Add UTM parameter handling
+    const getUtmParams = () => {
+        const utmParams = new URLSearchParams();
+        searchParams.forEach((value, key) => {
+            if (key.startsWith('utm_')) {
+                utmParams.append(key, value);
+            }
+        });
+
+        return utmParams.toString();
+    };
 
     // Add FB pixel data if needed
     useEffect(() => {
@@ -41,7 +55,11 @@ export function GmailLinkView({ initialStateId }: GmailLinkViewProps) {
                 const response = await fetch('/api/gmail/state', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ fbp, fbc })
+                    body: JSON.stringify({
+                        fbp,
+                        fbc,
+                        utm_params: getUtmParams()
+                    })
                 });
 
                 if (!response.ok) throw new Error('Failed to update state');
@@ -55,7 +73,7 @@ export function GmailLinkView({ initialStateId }: GmailLinkViewProps) {
         };
 
         updateStateWithPixelData();
-    }, [stateId]);
+    }, [stateId, searchParams]);
 
     return (
         <div className='relative z-10 flex min-h-screen w-full flex-col'>

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 import IconNewWhite from '@/components/Icon/IconNewWhite';
 import { FRAMER_LINKS } from '@/config/navigation';
@@ -17,6 +18,18 @@ export default function GmailLinkB() {
     const [stateId, setStateId] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
+    const searchParams = useSearchParams();
+
+    const getUtmParams = () => {
+        const utmParams = new URLSearchParams();
+        searchParams.forEach((value, key) => {
+            if (key.startsWith('utm_')) {
+                utmParams.append(key, value);
+            }
+        });
+
+        return utmParams.toString();
+    };
 
     useEffect(() => {
         async function getStateId() {
@@ -24,7 +37,9 @@ export default function GmailLinkB() {
                 const response = await fetch('/api/gmail/state', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({})
+                    body: JSON.stringify({
+                        utm_params: getUtmParams() || 'paid'
+                    })
                 });
 
                 if (!response.ok) throw new Error('Failed to get state ID');
@@ -38,7 +53,7 @@ export default function GmailLinkB() {
         }
 
         getStateId();
-    }, []);
+    }, [searchParams]);
 
     return (
         <div className='flex h-screen flex-col'>
@@ -53,15 +68,15 @@ export default function GmailLinkB() {
             </div>
 
             <Link href={stateId ? `https://email.ascend.travel/gmail/import/start/${stateId}` : ''}>
-            <div className='flex max-h-[200px] flex-col items-center justify-center gap-4 overflow-clip rounded-3xl pb-24'>
+                <div className='flex max-h-[200px] flex-col items-center justify-center gap-4 overflow-clip rounded-3xl pb-24'>
                     {stateId && (
                         <div
                             onClick={() =>
                                 (window.location.href = `https://email.ascend.travel/gmail/import/start/${stateId}`)
                             }
                             className='cursor-pointer'>
-                <CheckboxNotice width={260} height={120} showText={false} />
-            </div>
+                            <CheckboxNotice width={260} height={120} showText={false} />
+                        </div>
                     )}
                     {!stateId && <CheckboxNotice width={260} height={120} showText={false} />}
                 </div>
@@ -71,7 +86,7 @@ export default function GmailLinkB() {
                 {stateId ? (
                     <Link
                         href={`https://email.ascend.travel/gmail/import/start/${stateId}`}
-                        className='font-figtree mt-2 flex items-center gap-2 rounded-full bg-white px-6 py-4 font-semibold text-neutral-900 transition-all hover:bg-white/90'>
+                        className='font-figtree animate-shake animate-fade-in mt-2 flex origin-center items-center gap-2 rounded-full bg-white px-6 py-4 font-semibold text-neutral-900 transition-all hover:bg-white/90'>
                         <Image
                             src='/images/google-icon.png'
                             alt='Gmail icon'

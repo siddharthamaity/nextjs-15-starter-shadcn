@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
     try {
-        const { fbp, fbc } = await request.json();
+        const { fbp, fbc, utm_params } = await request.json();
         const headersList = await headers();
         const userAgent = headersList.get('user-agent') || '';
 
@@ -17,7 +17,8 @@ export async function POST(request: Request) {
                 pixel_id: process.env.NEXT_PUBLIC_FB_PIXEL_ID,
                 user_agent: userAgent,
                 fbp,
-                fbc
+                fbc,
+                utm_params: utm_params
             })
         });
 

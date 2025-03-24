@@ -7,7 +7,6 @@ interface CustomerInfo {
     citizenship: string;
     pixel_id: string;
     user_agent: string;
-    utm_params: string;
     ip_address: string;
     state_id?: string;
     test_mode?: boolean;
@@ -37,7 +36,6 @@ export async function POST(request: Request) {
             citizenship: body.citizenship,
             pixel_id: process.env.NEXT_PUBLIC_FB_PIXEL_ID!,
             user_agent: userAgent,
-            utm_params: body.utm_params || '',
             ip_address: ipAddress,
             state_id: body.state_id,
             ...(body.testMode ? { test_mode: true } : {})
