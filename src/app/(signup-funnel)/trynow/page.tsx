@@ -14,7 +14,7 @@ interface PageProps {
 }
 
 export const metadata: Metadata = {
-    title: 'Try Ascend Now | Save Money on Trips'
+    title: 'Try Ascend Now | The travel agent that pays you back'
 };
 
 async function getCustomerInfo(stateId: string | null) {
