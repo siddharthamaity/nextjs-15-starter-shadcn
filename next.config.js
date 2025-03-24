@@ -5,7 +5,14 @@ const { withSentryConfig } = require('@sentry/nextjs');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['email.ascend.travel']
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'email.ascend.travel',
+                port: '',
+                pathname: '/**'
+            }
+        ]
     }
 };
 

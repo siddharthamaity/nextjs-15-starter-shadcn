@@ -32,7 +32,7 @@ const figtree = Figtree({
 });
 
 export const metadata: Metadata = {
-    title: 'Ascend Travel',
+    title: 'Try Ascend Now | The travel agent that pays you back',
     description: 'Save money on your trips with Ascend',
     applicationName: 'Ascend Travel',
     appleWebApp: {

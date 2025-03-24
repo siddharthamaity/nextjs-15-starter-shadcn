@@ -101,7 +101,9 @@ export function GmailLinkView({ initialStateId }: GmailLinkViewProps) {
                 )}
 
                 {/* Load checkbox notice immediately since it's above the fold */}
-                <CheckboxNotice />
+                <div className='mt-8 max-w-sm'>
+                    <CheckboxNotice width={260} height={120} showText={false} />
+                </div>
                 <div className='font-figtree mt-4 max-w-sm text-center text-xs font-light text-neutral-900/90'>
                     We'll only tab into your Gmail to pull out your travel reservations, nothing else is shared
                 </div>
