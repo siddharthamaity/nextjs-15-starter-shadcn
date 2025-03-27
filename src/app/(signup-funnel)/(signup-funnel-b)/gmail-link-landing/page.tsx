@@ -1,6 +1,6 @@
 import PriceDropCards from '../_components/PriceDropCards/PriceDropCards';
 
-export default function GmailLinkB() {
+export default function GmailLinkLanding() {
     return (
         <div className='flex h-screen flex-col'>
             <div className='flex w-full flex-col items-center justify-center gap-2 px-8 pb-8'>

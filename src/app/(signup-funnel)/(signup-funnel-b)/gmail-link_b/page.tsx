@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,7 +14,7 @@ import PriceDropCards from '../_components/PriceDropCards/PriceDropCards';
 import { YcombBanner } from '../_components/YcombBanner/YcombBanner';
 import { Lock } from 'lucide-react';
 
-export default function GmailLinkB() {
+function GmailLinkB() {
     const [stateId, setStateId] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
@@ -126,5 +126,13 @@ export default function GmailLinkB() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function Page() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <GmailLinkB />
+        </Suspense>
     );
 }
