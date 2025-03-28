@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
+import Link from 'next/link';
+
 import { IconBadgeCheckFilled } from '@/components/Icon/IconBadgeCheckFilled';
 
 import { WhatsNext } from '../_components/WhatsNext/WhatsNext';
@@ -72,6 +74,11 @@ export default function NewMemberPage() {
                         }
                     ]}
                 />
+                <Link
+                    href='/'
+                    className='text-md mt-8 rounded-full bg-neutral-50 px-8 py-3 text-center font-semibold text-neutral-900 transition-colors hover:bg-neutral-100'>
+                    Go back home
+                </Link>
             </div>
         </>
     );
