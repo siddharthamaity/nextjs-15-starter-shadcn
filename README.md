@@ -25,6 +25,8 @@ Welcome to the **Next.js 15 Starter** repository! This starter template is built
 - **System, Light & Dark Mode**
 - **Next.js Bundle Analyzer**
 - **Dockerfile** with Node.js 22.14.0 (Alpine)
+- **Dockerfile.bun** with Bun 1.2.7 (Alpine)
+
 
 ### 🛠️ ESLint Plugins
 
@@ -68,6 +70,7 @@ To enhance development experience, install the following VS Code extensions:
 
 ### Prerequisites
 
+- **Bun**: Version 1.2.7 or higher OR
 - **Node.js**: Version 20.18.0 or higher
 - **Docker**: For containerized deployment (optional but recommended)
 
@@ -88,6 +91,10 @@ To enhance development experience, install the following VS Code extensions:
     npm install
     # or with Yarn
     yarn install
+    # or with pnpm
+    pnpm install
+    # or with Bun
+    bun install
     ```
 
 3. **Run Development Server**:
@@ -95,11 +102,21 @@ To enhance development experience, install the following VS Code extensions:
     npm run dev
     # or with Yarn
     yarn dev
+    # or with pnpm
+    pnpm dev
+    # or with Bun
+    bun dev
     ```
 
 4. **Build for Production**:
     ```bash
     npm run build
+    # or with Yarn
+    yarn build
+    # or with pnpm
+    pnpm build
+    # or with Bun
+    bun run build
     ```
 
 ### 🐳 Docker Setup
@@ -108,6 +125,9 @@ To use Docker, make sure Docker is installed on your machine. Then, build and ru
 
 ```bash
 docker build . -t nextjs-starter-shadcn
+# or if using Bun
+docker build . -t nextjs-starter-shadcn -f Dockerfile.bun
+
 docker run -p 3000:3000 nextjs-starter-shadcn
 ```
 
