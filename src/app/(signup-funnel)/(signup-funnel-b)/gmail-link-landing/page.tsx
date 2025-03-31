@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import PriceDropCards from '../_components/PriceDropCards/PriceDropCards';
 
 export default function GmailLinkLanding() {
@@ -14,11 +16,13 @@ export default function GmailLinkLanding() {
                     You get the difference back, even on non-refundable bookings.
                 </p>
             </div>
-            <div className='flex flex-col items-center justify-center gap-2'>
-                <div className='text-md rounded-full bg-neutral-50 px-8 py-3 text-center font-semibold text-neutral-900 lg:px-16 lg:text-xl'>
-                    Start Saving for free
+            <Link href='/gmail-link_b'>
+                <div className='flex flex-col items-center justify-center gap-2'>
+                    <div className='text-md rounded-full bg-neutral-50 px-8 py-3 text-center font-semibold text-neutral-900 lg:px-16 lg:text-xl'>
+                        Start Saving for free
+                    </div>
                 </div>
-            </div>
+            </Link>
         </div>
     );
 }
