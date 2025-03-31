@@ -38,7 +38,7 @@ export function SuccessViewB() {
                 const data = await response.json();
 
                 if (data?.signup_link_code) {
-                    setStripeUrl(`https://payments.ascend.travel/${data.signup_link_code}`);
+                    setStripeUrl(`https://payments.heyascend.com/${data.signup_link_code}`);
                 } else {
                     setError('Please contact hey@ascend.travel for assistance');
                 }
