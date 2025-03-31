@@ -12,8 +12,15 @@ export function middleware(request: NextRequest) {
         debug: process.env.NODE_ENV === 'development'
     });
 
+    const { pathname } = request.nextUrl;
+
+    // Redirect old picks paths to app.ascend.travel
+    if (pathname.startsWith('/picksV2') || pathname.startsWith('/pick')) {
+        return NextResponse.redirect(`https://app.ascend.travel${pathname}`);
+    }
+
     // Redirect root path to heyascend.com
-    if (request.nextUrl.pathname === '/') {
+    if (pathname === '/') {
         return NextResponse.redirect('https://heyascend.com');
     }
 
@@ -22,5 +29,5 @@ export function middleware(request: NextRequest) {
 
 // Configure which paths the middleware will run on
 export const config = {
-    matcher: '/'
+    matcher: ['/', '/pick/:path*', '/picksV2/:path*']
 };
