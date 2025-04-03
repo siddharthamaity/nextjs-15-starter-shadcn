@@ -94,7 +94,7 @@ export function GmailLinkView({ initialStateId }: GmailLinkViewProps) {
                 {/* Floating button */}
                 {stateId ? (
                     <Link
-                        href={`https://email.ascend.travel/gmail/import/start/${stateId}`}
+                        href={`https://gmail.heyascend.com/gmail/import/start/${stateId} `}
                         className='font-figtree mt-8 flex items-center gap-2 rounded-full bg-white px-6 py-4 font-semibold text-neutral-900 transition-all hover:bg-white/90'>
                         <Image
                             src='/images/google-icon.png'
