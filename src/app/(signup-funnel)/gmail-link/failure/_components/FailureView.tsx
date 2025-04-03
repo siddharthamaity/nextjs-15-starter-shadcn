@@ -13,7 +13,7 @@ export function FailureView() {
     const stateId = searchParams.get('state_id');
 
     // Compute retry URL
-    const retryUrl = stateId ? `https://email.ascend.travel/gmail/import/start/${stateId}` : '/gmail-link';
+    const retryUrl = stateId ? `https://gmail.heyascend.com/gmail/import/start/${stateId} ` : '/gmail-link';
 
     return (
         <div className='relative z-10 flex min-h-screen w-full flex-col'>
