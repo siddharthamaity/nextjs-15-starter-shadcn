@@ -19,6 +19,11 @@ export function middleware(request: NextRequest) {
         return NextResponse.redirect(`https://app.ascend.travel${pathname}`);
     }
 
+    // Redirect flight paths to app.ascend.travel
+    if (pathname.startsWith('/flight') || pathname.startsWith('/flights')) {
+        return NextResponse.redirect(`https://app.ascend.travel${pathname}`);
+    }
+
     // Redirect root path to heyascend.com
     if (pathname === '/') {
         return NextResponse.redirect('https://heyascend.com');
@@ -29,5 +34,5 @@ export function middleware(request: NextRequest) {
 
 // Configure which paths the middleware will run on
 export const config = {
-    matcher: ['/', '/pick/:path*', '/picksV2/:path*']
+    matcher: ['/', '/pick/:path*', '/picksV2/:path*', '/flight/:path*', '/flights/:path*']
 };
