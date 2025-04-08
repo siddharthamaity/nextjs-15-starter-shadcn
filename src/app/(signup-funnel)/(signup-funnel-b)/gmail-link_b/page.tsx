@@ -6,12 +6,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-import IconNewWhite from '@/components/Icon/IconNewWhite';
 import { FRAMER_LINKS } from '@/config/navigation';
 
 import { CheckboxNotice } from '../../gmail-link/_components/CheckboxNotice';
-import PriceDropCards from '../_components/PriceDropCards/PriceDropCards';
-import { YcombBanner } from '../_components/YcombBanner/YcombBanner';
+import Cookies from 'js-cookie';
 import { Lock } from 'lucide-react';
 
 function GmailLinkB() {
@@ -19,26 +17,42 @@ function GmailLinkB() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
     const searchParams = useSearchParams();
-
     const getUtmParams = () => {
         const utmParams = new URLSearchParams();
+        const utmParamsObject: { [key: string]: string } = {};
+
         searchParams.forEach((value, key) => {
             if (key.startsWith('utm_')) {
                 utmParams.append(key, value);
             }
         });
 
-        return utmParams.toString();
+        const utmParamsString = utmParams.toString();
+        const utmParamsArray = utmParamsString.split('&');
+
+        utmParamsArray.forEach((param) => {
+            const [key, value] = param.split('=');
+            utmParamsObject[key] = value;
+        });
+        console.log(utmParamsObject);
+
+        return utmParamsObject;
     };
 
     useEffect(() => {
         async function getStateId() {
             try {
+                const fbp = Cookies.get('_fbp');
+                const fbc = Cookies.get('_fbc');
+
+                const utmParams = getUtmParams();
                 const response = await fetch('/api/gmail/state', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        utm_params: getUtmParams() || 'paid'
+                        ...(fbp ? { fbp } : {}),
+                        ...(fbc ? { fbc } : {}),
+                        ...(utmParams ? { utm_params: utmParams } : {})
                     })
                 });
 

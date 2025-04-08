@@ -16,9 +16,9 @@ export async function POST(request: Request) {
             body: JSON.stringify({
                 pixel_id: process.env.NEXT_PUBLIC_FB_PIXEL_ID,
                 user_agent: userAgent,
-                fbp,
-                fbc,
-                utm_params: utm_params
+                ...(fbp ? { fbp } : {}),
+                ...(fbc ? { fbc } : {}),
+                ...(utm_params ? { utm_params } : {})
             })
         });
 
