@@ -103,7 +103,7 @@ export function FlipCard({ onSubmit, frontContent }: FlipCardProps) {
                         <div className='flex h-full w-full flex-col gap-4'>
                             <h2 className='font-figtree text-2xl font-bold'>One last step</h2>
                             <p className='text-sm text-neutral-700'>
-                                We use WhatsApp for messaging you about price drops and refund alerts
+                                We use WhatsApp for messaging you about price drops and refund alerts.
                             </p>
                             <Form {...form}>
                                 <form className='flex flex-1 flex-col gap-4' onSubmit={form.handleSubmit(onSubmit)}>
