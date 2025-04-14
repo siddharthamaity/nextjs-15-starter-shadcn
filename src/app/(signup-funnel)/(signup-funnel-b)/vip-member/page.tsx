@@ -76,7 +76,7 @@ export default function NewMemberPage() {
                 />
                 <Link
                     href='/'
-                    className='text-md mb-24 rounded-full bg-neutral-50 px-8 py-3 text-center font-semibold text-neutral-900 transition-colors hover:bg-neutral-100'>
+                    className='text-md mb-60 rounded-full bg-neutral-50 px-8 py-3 text-center font-semibold text-neutral-900 transition-colors hover:bg-neutral-100'>
                     Go back home
                 </Link>
             </div>

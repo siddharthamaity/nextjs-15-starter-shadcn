@@ -9,6 +9,7 @@ import IconNewWhite from '@/components/Icon/IconNewWhite';
 import GradientShadowHeading from '../../../../_components/GradientShadowHeading/GradientShadowHeading';
 import { FlipCard } from './FlipCard';
 import { ShieldCheck } from 'lucide-react';
+import { toast } from 'sonner';
 
 export function SuccessViewB() {
     const router = useRouter();
@@ -59,9 +60,39 @@ export function SuccessViewB() {
         }
     };
 
-    const handleFreePlan = (data: { phone: string; citizenship: string }) => {
-        const query = stateId ? `?state_id=${stateId}` : '';
-        router.push(`/trynow${query}&phone=${data.phone}&citizenship=${data.citizenship}`);
+    const handleFreePlan = async (data: { phone: string; citizenship: string }) => {
+        try {
+            const response = await fetch('/api/trynow', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    phone: data.phone,
+                    citizenship: data.citizenship,
+                    state_id: stateId || undefined
+                })
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error('Registration failed. Please try again later');
+            }
+
+            toast.success('Registration successful!', {
+                duration: 3000,
+                position: 'bottom-center'
+            });
+
+            router.push('/new-member');
+        } catch (error) {
+            console.error('Form submission error:', error);
+            toast.error(error instanceof Error ? error.message : 'Something went wrong', {
+                duration: 5000,
+                position: 'bottom-center'
+            });
+        }
     };
 
     return (
