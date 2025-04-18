@@ -1,6 +1,5 @@
 import IconNewWhite from '@/components/Icon/IconNewWhite';
-
-import { YcombBanner } from './_components/YcombBanner/YcombBanner';
+import { YcombBanner } from '@/components/YcombBanner/YcombBanner';
 
 export default function SignupFunnelBLayout({ children }: { children: React.ReactNode }) {
     return (
