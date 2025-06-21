@@ -21,10 +21,10 @@
         "esbenp.prettier-vscode", // ? https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
         "ChakrounAnas.turbo-console-log", // ? https://marketplace.visualstudio.com/items?itemName=ChakrounAnas.turbo-console-log
         "codeandstuff.package-json-upgrade", // ? https://marketplace.visualstudio.com/items?itemName=codeandstuff.package-json-upgrade
-        "moalamri.inline-fold", // ? https://marketplace.visualstudio.com/items?itemName=moalamri.inline-fold
         "KnisterPeter.vscode-commitizen", // ? https://marketplace.visualstudio.com/items?itemName=KnisterPeter.vscode-commitizen
         "yzhang.markdown-all-in-one", // ? https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one
         "bradlc.vscode-tailwindcss", // ? https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
         "austenc.tailwind-docs", // ? https://marketplace.visualstudio.com/items?itemName=austenc.tailwind-docs
+        "stivo.tailwind-fold" // ? https://marketplace.visualstudio.com/items?itemName=stivo.tailwind-fold
     ]
 }

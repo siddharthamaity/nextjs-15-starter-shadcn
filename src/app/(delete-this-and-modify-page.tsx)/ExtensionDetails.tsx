@@ -16,11 +16,11 @@ const RECOMMENDED_EXTENSIONS: string[] = [
     'Gruntfuggly.todo-tree',
     'ChakrounAnas.turbo-console-log',
     'codeandstuff.package-json-upgrade',
-    'moalamri.inline-fold',
     'KnisterPeter.vscode-commitizen',
     'yzhang.markdown-all-in-one',
     'bradlc.vscode-tailwindcss',
-    'austenc.tailwind-docs'
+    'austenc.tailwind-docs',
+    'stivo.tailwind-fold'
 ];
 
 interface ExtensionStatistics {
@@ -89,7 +89,7 @@ const ExtensionDetails: React.FC = async () => {
                         <Link href={``} target='_blank'>
                             <img className='size-9 hover:cursor-pointer' src={extension.iconUri} alt={extension.name} />
                         </Link>
-                        <div className='absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 transform space-y-1.5 whitespace-nowrap rounded bg-neutral-200 p-3 text-sm text-black group-hover:block'>
+                        <div className='absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 transform space-y-1.5 rounded bg-neutral-200 p-3 text-sm whitespace-nowrap text-black group-hover:block'>
                             <h3 className='text-lg'>{extension.displayName}</h3>
                             <p>Downloads: {extension.downloadCount.toLocaleString()}</p>
                         </div>
