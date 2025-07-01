@@ -5,7 +5,7 @@ import NavigationLinks from './NavigationLinks';
 
 const NavigationBar = () => {
     return (
-        <header className='fixed top-0 left-0 z-50 h-[4.5rem] w-full bg-[linear-gradient(135deg,_var(--background)_40%,_var(--header-split)_40%)] backdrop-blur-sm'>
+        <header className='z-50 h-[4.5rem] w-full bg-[linear-gradient(135deg,_var(--background)_40%,_var(--header-split)_40%)] backdrop-blur-sm'>
             {/* inner container: centered & constrained */}
             <div className='mx-auto flex h-full w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8'>
                 {/* LEFT: logo */}

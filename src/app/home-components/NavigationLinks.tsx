@@ -58,19 +58,23 @@ const NavigationLinks = () => {
                         {hasChildren ? (
                             <button
                                 className={`hover:bg-accent hover:text-accent-foreground focus:ring-ring flex items-center gap-1 rounded-[var(--radius)] px-4 py-2 text-sm font-medium transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none ${
-                                    active
-                                        ? 'bg-primary text-primary-foreground shadow-sm'
-                                        : 'text-foreground hover:shadow-sm'
-                                } ${openIndex === idx ? 'bg-accent text-accent-foreground' : ''} `}>
+                                    openIndex === idx
+                                        ? 'bg-accent text-accent-foreground shadow-sm'
+                                        : active
+                                          ? 'bg-primary text-primary-foreground shadow-sm'
+                                          : 'text-primary-foreground hover:shadow-sm'
+                                } `}>
                                 {link.label}
                                 <ChevronDown
-                                    className={`h-4 w-4 transition-transform duration-200 ${openIndex === idx ? 'rotate-180' : ''}`}
+                                    className={`h-4 w-4 transition-transform duration-200 ${
+                                        openIndex === idx ? 'rotate-180' : ''
+                                    }`}
                                 />
                             </button>
                         ) : (
                             <Link
                                 href={link.href || '#'}
-                                className={`hover:bg-accent hover:text-accent-foreground focus:ring-ring inline-flex items-center rounded-[var(--radius)] px-4 py-2 text-sm font-medium transition-all duration-200 hover:shadow-sm focus:ring-2 focus:ring-offset-2 focus:outline-none ${active ? 'bg-primary text-primary-foreground shadow-sm' : 'text-foreground'} `}>
+                                className={`hover:bg-accent hover:text-accent-foreground focus:ring-ring inline-flex items-center rounded-[var(--radius)] px-4 py-2 text-sm font-medium transition-all duration-200 hover:shadow-sm focus:ring-2 focus:ring-offset-2 focus:outline-none ${active ? 'bg-secondary text-secondary-foreground shadow-sm' : 'text-primary-foreground'} `}>
                                 {link.label}
                             </Link>
                         )}
