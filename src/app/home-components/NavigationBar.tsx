@@ -1,16 +1,28 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
-import NavigationLinks from '@/app/home-components/NavigationLinks';
-import ThemeSwitch from '@/app/home-components/ThemeSwitch';
+import NavigationLinks from './NavigationLinks';
 
 const NavigationBar = () => {
     return (
-        <div className='mx-auto mt-3 flex w-full max-w-7xl flex-col-reverse items-center justify-between gap-6 px-3 sm:flex-row sm:px-0 lg:mt-6'>
-            <NavigationLinks />
-            <div className='flex w-full justify-between gap-6 sm:w-auto sm:items-center'>
-                <ThemeSwitch />
+        <header className='fixed top-0 left-0 z-50 h-[4.5rem] w-full bg-[linear-gradient(135deg,_var(--background)_40%,_var(--header-split)_40%)] backdrop-blur-sm'>
+            {/* inner container: centered & constrained */}
+            <div className='mx-auto flex h-full w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8'>
+                {/* LEFT: logo */}
+                <Link href='/' className='flex items-center transition-transform duration-200'>
+                    <Image
+                        src='/Steelco_logo.jpg'
+                        alt='Steelco-Teknikk Logo'
+                        width={258}
+                        height={258}
+                        className='h-12 w-auto object-contain'
+                    />
+                </Link>
+
+                {/* RIGHT: nav links */}
+                <NavigationLinks />
             </div>
-        </div>
+        </header>
     );
 };
 
