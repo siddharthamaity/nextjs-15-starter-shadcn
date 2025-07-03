@@ -1,5 +1,7 @@
 'use client';
 
+import SteelcoSection from '@/components/steelco-seciton';
+
 import CallToActionSection from '../components/CallToActionSection';
 import HeroSection from '../components/HeroSection';
 import StorySection from '../components/StorySection';
@@ -11,8 +13,7 @@ export default function Page() {
     return (
         <div className='relative'>
             <HeroSection scrollY={scrollY} />
-            <StorySection />
-            <CallToActionSection />
+            <SteelcoSection />
         </div>
     );
 }
