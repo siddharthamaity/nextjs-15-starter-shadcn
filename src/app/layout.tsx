@@ -5,8 +5,8 @@ import localFont from 'next/font/local';
 
 import { ThemeProvider } from 'next-themes';
 
-import NavigationBar from '@/app/(delete-this-and-modify-page.tsx)/NavigationBar';
 import '@/app/globals.css';
+import NavigationBar from '@/app/home-components/NavigationBar';
 import { Toaster } from '@/registry/new-york-v4/ui/sonner';
 
 const geistSans = localFont({
@@ -27,8 +27,6 @@ export const metadata: Metadata = {
 
 const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
     return (
-        // ? https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
-        // ? https://react.dev/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors
         <html suppressHydrationWarning lang='en'>
             <body
                 className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground overscroll-none antialiased`}>

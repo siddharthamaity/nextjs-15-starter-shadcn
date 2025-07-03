@@ -1,12 +1,18 @@
-import HomePage from '@/app/(delete-this-and-modify-page.tsx)/HomePage';
+'use client';
 
-/**
- * The main page component that renders the HomePage component.
- *
- * @returns {JSX.Element} The rendered HomePage component.
- */
-const Page = () => {
-    return <HomePage />;
-};
+import CallToActionSection from '../components/CallToActionSection';
+import HeroSection from '../components/HeroSection';
+import StorySection from '../components/StorySection';
+import { useScrollPosition } from '../hooks/useScrollPosition';
 
-export default Page;
+export default function Page() {
+    const scrollY = useScrollPosition();
+
+    return (
+        <div className='relative'>
+            <HeroSection scrollY={scrollY} />
+            <StorySection />
+            <CallToActionSection />
+        </div>
+    );
+}
