@@ -83,7 +83,8 @@ export default function HeatpointSection() {
                             <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
                                 {advantages.map((advantage, index) => {
                                     const IconComponent = advantage.icon;
-                                    return (
+                                    
+return (
                                         <div
                                             key={index}
                                             className='flex items-start gap-3 rounded-lg p-3 transition-colors duration-200 hover:bg-gray-50'>

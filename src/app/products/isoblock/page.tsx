@@ -99,7 +99,8 @@ export default function IsoblockPage() {
                                     <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
                                         {benefits.map((benefit, index) => {
                                             const IconComponent = benefit.icon;
-                                            return (
+                                            
+return (
                                                 <div
                                                     key={index}
                                                     className='flex flex-col items-center rounded-lg border border-teal-100 bg-white p-4 text-center shadow-sm transition-all duration-200 hover:shadow-md'>

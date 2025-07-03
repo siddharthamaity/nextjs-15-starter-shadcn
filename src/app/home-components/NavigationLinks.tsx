@@ -22,7 +22,8 @@ const NavigationLinks = () => {
         <nav className='flex items-center gap-2'>
             {NAVIGATION_LINKS.map((link) => {
                 const active = isActive(link.href);
-                return (
+                
+return (
                     <Link
                         key={link.label}
                         href={link.href}
