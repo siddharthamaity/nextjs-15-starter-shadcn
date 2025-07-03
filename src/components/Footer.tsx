@@ -86,22 +86,6 @@ const Footer = () => {
                                 <p>Pb. 100</p>
                                 <p>1332 Østerås</p>
                             </div>
-
-                            {/* Railcom Reference */}
-                            <div className='text-gray-300'>
-                                <p className='mb-2 font-medium'>Partner:</p>
-                                <p className='text-sm'>
-                                    Se også{' '}
-                                    <Link
-                                        href='https://railcom.no'
-                                        target='_blank'
-                                        rel='noopener noreferrer'
-                                        className='inline-flex items-center gap-1 text-blue-400 transition-colors hover:text-blue-300'>
-                                        Railcom nettside
-                                        <ExternalLink className='h-3 w-3' />
-                                    </Link>
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
