@@ -86,7 +86,8 @@ export default function BallastlimPage() {
                                     <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
                                         {advantages.map((advantage, index) => {
                                             const IconComponent = advantage.icon;
-                                            return (
+                                            
+return (
                                                 <div
                                                     key={index}
                                                     className='flex items-center gap-3 rounded-lg border border-amber-100 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md'>
