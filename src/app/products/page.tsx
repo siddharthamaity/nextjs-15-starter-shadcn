@@ -1,3 +1,6 @@
+import isoblockImage from '@/assets/isoblock/isoblock.PNG';
+import kabelkanalerImage from '@/assets/kabelkanal_heatpoint/Kabelkanal_1.PNG';
+import ballastlimImage from '@/assets/lim/lim.PNG';
 import ProductCard from '@/components/ProductCard';
 
 export default function HomePage() {
@@ -13,21 +16,21 @@ export default function HomePage() {
 
                 <div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
                     <ProductCard
-                        imageSrc='/placeholder.svg?height=300&width=400'
+                        imageSrc={'/assets/isoblock/isoblock_produkttegning.PNG'}
                         title='Isoblock'
                         shortDesc='Effektiv isolasjon for sporvekselvarme. Reduserer energiforbruk med opptil 50 %.'
                         link='/products/isoblock'
                     />
 
                     <ProductCard
-                        imageSrc='/placeholder.svg?height=300&width=400'
+                        imageSrc={'/assets/kabelkanal_heatpoint/Kabelkanal_1.PNG'}
                         title='Kabelkanaler'
                         shortDesc='Robuste plastkanaler fra Heatpoint og Wirthwein for jernbaneinfrastruktur.'
                         link='/products/kabelkanaler'
                     />
 
                     <ProductCard
-                        imageSrc='/placeholder.svg?height=300&width=400'
+                        imageSrc={'/assets/lim/lim.PNG'}
                         title='Ballastlim'
                         shortDesc='Termaren TM29 – miljøvennlig harpiks for stabilisering av ballast.'
                         link='/products/ballastlim'
