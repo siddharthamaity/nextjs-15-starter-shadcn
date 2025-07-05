@@ -11,7 +11,7 @@ export default function Page() {
     const scrollY = useScrollPosition();
 
     return (
-        <div className='relative'>
+        <div className=''>
             <HeroSection scrollY={scrollY} />
             <SteelcoSection />
         </div>

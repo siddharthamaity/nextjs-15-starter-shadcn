@@ -27,7 +27,7 @@ return (
                     <Link
                         key={link.label}
                         href={link.href}
-                        className={`hover:bg-accent hover:text-accent-foreground focus:ring-ring inline-flex items-center rounded-[var(--radius)] px-4 py-2 text-sm font-medium transition-all duration-200 hover:shadow-sm focus:ring-2 focus:ring-offset-2 focus:outline-none ${active ? 'bg-secondary text-secondary-foreground shadow-sm' : 'text-primary-foreground'} `}>
+                        className={`hover:bg-accent hover:text-accent-foreground focus:ring-ring inline-flex items-center rounded-[var(--radius)] px-4 py-2 text-sm font-medium transition-all duration-200 hover:shadow-sm focus:ring-2 focus:ring-offset-2 focus:outline-none ${active ? 'bg-primary text-primary-foreground shadow-md' : 'text-primary-foreground/70'} `}>
                         {link.label}
                     </Link>
                 );

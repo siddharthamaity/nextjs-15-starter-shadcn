@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 interface HeroSectionProps {
     scrollY: number;
 }
@@ -7,7 +9,7 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
         <section className='relative h-screen overflow-hidden'>
             {/* Background Image with Parallax Effect */}
             <div
-                className='absolute inset-0 h-[120%] w-full bg-cover bg-center bg-no-repeat'
+                className='absolute inset-0 mt-[-5%] h-[120%] w-full bg-cover bg-center bg-no-repeat'
                 style={{
                     backgroundImage: `url('/hero_image.JPG?height=1080&width=1920')`,
                     transform: `translateY(${scrollY * 0.5}px)`
@@ -32,12 +34,16 @@ export default function HeroSection({ scrollY }: HeroSectionProps) {
                     </h1>
 
                     <div className='flex flex-col justify-start gap-4 sm:flex-row'>
-                        <button className='transform rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-purple-700'>
+                        <Link
+                            href='/contact'
+                            className='transform rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-purple-700'>
                             Kontakt oss
-                        </button>
-                        <button className='rounded-lg border-2 border-white px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-white hover:text-gray-900'>
+                        </Link>
+                        <Link
+                            href='/products'
+                            className='rounded-lg border-2 border-white px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-white hover:text-gray-900'>
                             Våre produkter
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>
