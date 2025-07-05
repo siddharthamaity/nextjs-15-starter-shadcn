@@ -59,7 +59,8 @@ const HamburgerMenu = () => {
                     <div className='space-y-1 px-2 pt-2 pb-3'>
                         {NAVIGATION_LINKS.map((link) => {
                             const active = isActive(link.href);
-                            return (
+                            
+return (
                                 <Link
                                     key={link.label}
                                     href={link.href}
