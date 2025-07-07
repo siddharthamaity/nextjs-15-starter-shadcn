@@ -4,13 +4,13 @@
 // or remove it if you make this a server component
 import Image from 'next/image';
 
+import { useScroll } from '@/contexts/ScrollContext';
+
 // components/HeroBackground.tsx
 
-interface HeroBackgroundProps {
-    scrollY: number;
-}
+export default function HeroBackground() {
+    const { scrollY } = useScroll();
 
-export default function HeroBackground({ scrollY }: HeroBackgroundProps) {
     return (
         <div className='absolute inset-0 overflow-hidden'>
             <Image
