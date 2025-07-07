@@ -27,7 +27,7 @@ const NavigationLinks = () => {
                     <Link
                         key={link.label}
                         href={link.href}
-                        className={`hover:bg-accent hover:text-accent-foreground focus:ring-ring inline-flex items-center rounded-[var(--radius)] px-5 py-3 text-lg font-medium transition-all duration-200 hover:shadow-sm focus:ring-2 focus:ring-offset-2 focus:outline-none ${active ? 'bg-primary text-primary-foreground shadow-md' : 'bg-accent text-accent-foreground'} `}>
+                        className={`hover:text-primary-foreground focus:ring-ring hover:bg-primary inline-flex items-center rounded-[var(--radius)] px-5 py-3 text-lg font-medium transition-all duration-200 hover:shadow-sm focus:ring-2 focus:ring-offset-2 focus:outline-none ${active ? 'text-primary-foreground bg-[#58565b] shadow-md' : 'bg-accent text-accents-foreground opacity-80'} `}>
                         {link.label}
                     </Link>
                 );
