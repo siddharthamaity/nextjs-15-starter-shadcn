@@ -9,9 +9,6 @@ import HamburgerMenu from './HamburgerMenu';
 import NavigationLinks from './NavigationLinks';
 
 const NavigationBar = () => {
-    const { width } = useWindowSize();
-    const isMobile = width !== undefined && width < 1100;
-
     return (
         <header className='relative z-50 h-[8rem] w-full bg-white backdrop-blur-sm'>
             {/* inner container: centered & constrained */}
@@ -19,11 +16,11 @@ const NavigationBar = () => {
                 {/* LEFT: logo */}
                 <Link href='/' className='flex items-center transition-transform duration-200'>
                     <Image
-                        src={isMobile ? '/Steelco_logo_2-removebg.png' : '/Steelco-logo.svg'}
+                        src={'/Steelco-logo.svg'}
                         alt='Steelco-Teknikk Logo'
                         width={258}
                         height={258}
-                        className={`${isMobile ? 'h-24' : 'h-28'} w-auto object-contain`}
+                        className={`'h-24' w-auto object-contain`}
                     />
                 </Link>
 
