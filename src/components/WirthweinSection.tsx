@@ -55,6 +55,13 @@ export default function WirthweinSection() {
                             strøm- og datalinjer. Så langt har Deutsche Bahn AG og mange andre selskaper over hele
                             verden installert mer enn 1 000 000 meter med kabelkanaler.
                         </p>
+                        <p className='mb-4 text-lg leading-relaxed font-medium text-[#58565b]'>
+                            Kabelkanalene fra Wirthwein brukes også i solcelleanlegg, vindkraftverk og andre
+                            installasjoner. Vår erfaring, kombinert med det brede bruksområdet for Wirthweins
+                            kabelkanaler, gir mange løsninger for et stort spekter av konstruksjonsmessige krav. Våre
+                            kunder drar nytte av rask, fleksibel og sikker installasjon av sine signal- og
+                            kommunikasjonsløsninger i våre kabelkanalsystemer.
+                        </p>
                         <p className='text-lg leading-relaxed font-medium text-[#58565b]'>
                             Wirthwein kabelkanal kombinerer kvalitet, økonomi og miljøvennlighet. Sammenlignet med
                             tradisjonelle kabelkanaler i betong, reduserer den spesielt utslipp og kostnader gjennom:
@@ -73,8 +80,8 @@ export default function WirthweinSection() {
                             <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
                                 {advantages.map((advantage, index) => {
                                     const IconComponent = advantage.icon;
-                                    
-return (
+
+                                    return (
                                         <div
                                             key={index}
                                             className='flex items-center gap-3 rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-[#f3661a] hover:shadow-md'>
@@ -91,8 +98,7 @@ return (
                         </div>
                     </div>
 
-                    {/* Simplified application section */}
-                    <div className='mb-8 rounded-lg border border-gray-200 bg-gray-50 p-6'>
+                    {/* <div className='mb-8 rounded-lg border border-gray-200 bg-gray-50 p-6'>
                         <div className='mb-3 flex items-start gap-3'>
                             <Globe className='mt-1 h-6 w-6 flex-shrink-0 text-[#f3661a]' />
                             <h4 className='text-lg font-semibold text-[#58565b]'>Bredt bruksområde</h4>
@@ -104,7 +110,9 @@ return (
                             kunder drar nytte av rask, fleksibel og sikker installasjon av sine signal- og
                             kommunikasjonsløsninger i våre kabelkanalsystemer.
                         </p>
-                    </div>
+                    </div>*/}
+
+                    {/* Simplified application section */}
                 </section>
 
                 {/* Simplified video section */}

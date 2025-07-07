@@ -54,13 +54,41 @@ export default function IsoblockPage() {
                         {/* Simplified Description Section */}
                         <section className='mb-12'>
                             <div className='mb-6 rounded-lg border-l-4 border-[#f3661a] bg-orange-50 p-6'>
-                                <p className='text-lg leading-relaxed font-medium text-[#58565b]'>
-                                    Isoblock gjør det mulig for skinnene å holde på tilstrekkelig varme til å smelte snø
-                                    og is, og kan i gjennomsnitt gi opptil 50 % energibesparelse. Den syntetiske
-                                    isolasjonen sørger for at varmen som brukes til sporvekselvarme utnyttes på en svært
-                                    effektiv måte. Vi har mange referanser fra fornøyde kunder som forteller om gode
-                                    resultater ved bruk av Isoblock.
-                                </p>
+                                <div className='space-y-4 text-lg leading-relaxed font-medium text-[#58565b]'>
+                                    <p>
+                                        Isoblock gjør det mulig for skinnene å holde på tilstrekkelig varme til å smelte
+                                        snø og is, og kan i gjennomsnitt gi opptil 50 % energibesparelse. Den syntetiske
+                                        isolasjonen sørger for at varmen som brukes til sporvekselvarme utnyttes på en
+                                        svært effektiv måte.
+                                    </p>
+
+                                    <p>
+                                        For å hindre varmetap og/eller unødig energiforbruk kan Baneprodukter tilby
+                                        IsoBlock isolasjon, en formstøpt syntetisk isolasjon montert på utsiden av
+                                        stokkskinnen i området med varmeelement. Isolasjonen består av materialer som er
+                                        utviklet i robuste jernbanemiljø for å oppnå betydelig isolasjonseffekt og lang
+                                        holdbarhet.
+                                    </p>
+
+                                    <p>
+                                        Designet på isolasjonsmaterialet gjør at man ikke trenger å fjerne isolasjonen
+                                        ved bruk av pakkmaskin. Ved å investere i IsoBlock isolasjon på stokkskinner med
+                                        varmeelement kan kostnaden raskt tjenes inn i form av energibesparelser og ved
+                                        økt regularitet på togtrafikk.
+                                    </p>
+
+                                    <p>
+                                        Investeringen i isolasjon for nye oppvarmingsinstallasjoner kan tjenes inn
+                                        umiddelbart ved å bruke en lavere elektrisk effekt og tynnere forsyningskabler.
+                                        Ved å montere IsoBlock isolasjon på stokkskinner med varmeelement, beholdes
+                                        varmeenergien på ønsket sted mellom tunge og stokkskinne.
+                                    </p>
+
+                                    <p>
+                                        Vi har mange referanser fra fornøyde kunder som forteller om gode resultater ved
+                                        bruk av Isoblock.
+                                    </p>
+                                </div>
                             </div>
 
                             {/* Benefits + Image Side-by-Side */}
@@ -77,8 +105,8 @@ export default function IsoblockPage() {
                                         <div className='flex flex-col gap-4'>
                                             {benefits.map((benefit, index) => {
                                                 const IconComponent = benefit.icon;
-                                                
-return (
+
+                                                return (
                                                     <div
                                                         key={index}
                                                         className='flex flex-1 flex-col items-center rounded-lg border border-gray-200 bg-white p-4 text-center shadow-sm transition-all duration-200 hover:border-[#f3661a] hover:shadow-md'>
