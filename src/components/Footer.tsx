@@ -4,12 +4,12 @@ import { ExternalLink, Mail, MapPin, Phone } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <footer className='bg-slate-900 text-white'>
+        <footer className='bg-[#58565b] text-white'>
             <div className='container mx-auto px-4 py-12'>
                 <div className='grid grid-cols-1 gap-8 md:grid-cols-3'>
                     {/* Company Info */}
                     <div>
-                        <h2 className='mb-4 text-2xl font-bold text-blue-400'>Steelco-Teknikk A/S</h2>
+                        <h2 className='mb-4 text-2xl font-bold text-white'>Steelco-Teknikk A/S</h2>
                         <p className='mb-4 leading-relaxed text-gray-300'>
                             Leverandør av kvalitetsprodukter og tjenester innen stål og teknikk.
                         </p>
@@ -18,9 +18,12 @@ const Footer = () => {
                                 href='https://fflive.bisnode.no/988533602_NO_a36f9303-8f22-44bc-8ba9-9376975f3ec4'
                                 target='_blank'
                                 rel='noopener noreferrer'
-                                className='inline-flex items-center gap-2 text-blue-400 transition-colors hover:text-blue-300'>
-                                Se kredittverdighet
-                                <ExternalLink className='h-4 w-4' />
+                                className='-ml-8 inline-flex items-center justify-start gap-2 text-white transition-colors hover:text-blue-300'>
+                                <img
+                                    src='https://ratinglogo.kredittverdig.no/laurels/livelogo_988533602.png'
+                                    alt='Bisnode kredittverdighet – logo'
+                                    className='mt-1 h-auto w-auto max-w-xs'
+                                />
                             </Link>
                         </div>
                     </div>
@@ -31,7 +34,7 @@ const Footer = () => {
                         <div className='space-y-4'>
                             {/* Address */}
                             <div className='flex items-start gap-3'>
-                                <MapPin className='mt-1 h-5 w-5 flex-shrink-0 text-blue-400' />
+                                <MapPin className='mt-1 h-5 w-5 flex-shrink-0 text-[#f3661a]' />
                                 <div className='text-gray-300'>
                                     <p className='font-medium'>Besøksadresse:</p>
                                     <p>Fossumveien 70</p>
@@ -41,7 +44,7 @@ const Footer = () => {
 
                             {/* Phone */}
                             <div className='flex items-center gap-3'>
-                                <Phone className='h-5 w-5 flex-shrink-0 text-blue-400' />
+                                <Phone className='h-5 w-5 flex-shrink-0 text-[#f3661a]' />
                                 <div className='text-gray-300'>
                                     <p className='font-medium'>Telefon:</p>
                                     <Link href='tel:+4795964035' className='transition-colors hover:text-white'>
@@ -52,7 +55,7 @@ const Footer = () => {
 
                             {/* Email */}
                             <div className='flex items-start gap-3'>
-                                <Mail className='mt-1 h-5 w-5 flex-shrink-0 text-blue-400' />
+                                <Mail className='mt-1 h-5 w-5 flex-shrink-0 text-[#f3661a]' />
                                 <div className='text-gray-300'>
                                     <p className='mb-1 font-medium'>E-post:</p>
                                     <div className='space-y-1'>
@@ -92,20 +95,9 @@ const Footer = () => {
 
                 {/* Bottom Bar */}
                 <div className='mt-12 border-t border-slate-700 pt-8'>
-                    <div className='flex flex-col items-center justify-between gap-4 md:flex-row'>
+                    <div className='flex flex-col items-center justify-center gap-4 md:flex-row'>
                         <div className='text-sm text-gray-400'>
                             <p>© 2025 Steelco-Teknikk A/S. Alle rettigheter forbeholdt.</p>
-                        </div>
-                        <div className='flex gap-6 text-sm text-gray-400'>
-                            <Link href='/personvern' className='transition-colors hover:text-white'>
-                                Personvern
-                            </Link>
-                            <Link href='/vilkar' className='transition-colors hover:text-white'>
-                                Vilkår
-                            </Link>
-                            <Link href='/cookies' className='transition-colors hover:text-white'>
-                                Cookies
-                            </Link>
                         </div>
                     </div>
                 </div>

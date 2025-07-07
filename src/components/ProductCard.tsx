@@ -22,12 +22,12 @@ export default function ProductCard({ imageSrc, title, shortDesc, link }: Produc
             </div>
 
             <div className='p-6'>
-                <h3 className='mb-3 text-xl font-bold text-gray-900'>{title}</h3>
-                <p className='mb-6 leading-relaxed text-gray-600'>{shortDesc}</p>
+                <h3 className='mb-3 text-xl font-bold text-[#58565b]'>{title}</h3>
+                <p className='mb-6 leading-relaxed text-[#58565b]'>{shortDesc}</p>
 
                 <Link
                     href={link}
-                    className='inline-block w-full rounded-lg bg-blue-600 px-6 py-3 text-center font-semibold text-white transition-colors duration-200 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none'>
+                    className='inline-block w-full rounded-lg bg-[#f3661a] px-6 py-3 text-center font-semibold text-white transition-colors duration-200 hover:bg-[#f3901d] focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none'>
                     Gå til produktside
                 </Link>
             </div>
