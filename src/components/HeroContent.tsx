@@ -1,18 +1,8 @@
-'use client';
-
 import Link from 'next/link';
 
-interface HeroContentProps {
-    scrollY: number;
-}
-
-export default function HeroContent({ scrollY }: HeroContentProps) {
+export default function HeroContent() {
     return (
-        <div
-            className='max-w-4xl text-white animate-fade-in-up'
-            style={{
-                transform: `translateY(${scrollY * 0.2}px)`
-            }}>
+        <>
             <h1 className='mb-6 text-5xl font-bold leading-tight md:text-7xl'>
                 <span className='text-[#f3661a] underline decoration-4'>Steelco-Teknikk</span>
                 <span className='block text-white'>
@@ -31,6 +21,6 @@ export default function HeroContent({ scrollY }: HeroContentProps) {
                     Kontakt oss
                 </Link>
             </div>
-        </div>
+        </>
     );
 }
