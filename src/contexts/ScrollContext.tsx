@@ -21,5 +21,6 @@ export function useScroll() {
     if (context === undefined) {
         throw new Error('useScroll must be used within a ScrollProvider');
     }
-    return context;
+    
+return context;
 }
