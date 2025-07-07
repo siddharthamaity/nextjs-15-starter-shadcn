@@ -41,6 +41,7 @@
     --header-split: #31331c;
     --logo-orange: #f3661a;
     --logo-gray: #58565b;
+    --credential-yellow: #f39507;
 }
 
 .dark {
@@ -187,6 +188,18 @@
 
     --animate-accordion-down: accordion-down 0.2s ease-out;
     --animate-accordion-up: accordion-up 0.2s ease-out;
+    --animate-fade-in-up: fade-in-up 1s ease-out forwards;
+
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
     @keyframes accordion-down {
         from {

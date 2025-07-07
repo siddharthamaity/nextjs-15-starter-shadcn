@@ -25,7 +25,7 @@ const HamburgerMenu = () => {
         <div className='md:hidden'>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className='text-primary-foreground focus:ring-ring inline-flex items-center justify-center rounded-md p-2 focus:ring-2 focus:outline-none focus:ring-inset'>
+                className='text-primary focus:ring-ring inline-flex items-center justify-center rounded-md p-2 focus:outline-none focus:ring-inset'>
                 <span className='sr-only'>Open main menu</span>
                 {isOpen ? (
                     <svg
@@ -59,8 +59,8 @@ const HamburgerMenu = () => {
                     <div className='space-y-1 px-2 pt-2 pb-3'>
                         {NAVIGATION_LINKS.map((link) => {
                             const active = isActive(link.href);
-                            
-return (
+
+                            return (
                                 <Link
                                     key={link.label}
                                     href={link.href}
