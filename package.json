@@ -14,10 +14,7 @@
         "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
     },
     "lint-staged": {
-        "**/*.{js,jsx,ts,tsx}": [
-            "eslint --fix",
-            "git add"
-        ]
+        "**/*.{js,jsx,ts,tsx}": "eslint --fix"
     },
     "dependencies": {
         "@hookform/resolvers": "^5.1.1",
