@@ -19,7 +19,7 @@ const NavigationBar = () => {
                 {/* LEFT: logo */}
                 <Link href='/' className='flex items-center transition-transform duration-200'>
                     <Image
-                        src={isMobile ? '/Steelco_logo_2-removebg.png' : '/Steelco_logo-removebg.png'}
+                        src={isMobile ? '/Steelco_logo_2-removebg.png' : '/Steelco-logo.svg'}
                         alt='Steelco-Teknikk Logo'
                         width={258}
                         height={258}
