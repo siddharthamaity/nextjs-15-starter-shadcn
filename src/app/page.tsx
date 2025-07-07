@@ -1,12 +1,15 @@
-import HomePage from '@/app/(delete-this-and-modify-page.tsx)/HomePage';
+import FadeInWrapper from '@/components/FadeInWrapper';
+import SteelcoSection from '@/components/steelco-seciton';
 
-/**
- * The main page component that renders the HomePage component.
- *
- * @returns {JSX.Element} The rendered HomePage component.
- */
-const Page = () => {
-    return <HomePage />;
-};
+import HeroSection from '../components/HeroSection';
 
-export default Page;
+export default function Page() {
+    return (
+        <div className=''>
+            <HeroSection />
+            <FadeInWrapper>
+                <SteelcoSection />
+            </FadeInWrapper>
+        </div>
+    );
+}
