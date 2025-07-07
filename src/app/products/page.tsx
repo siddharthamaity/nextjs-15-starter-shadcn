@@ -5,11 +5,11 @@ import ProductCard from '@/components/ProductCard';
 
 export default function HomePage() {
     return (
-        <div className='min-h-screen bg-gray-50'>
+        <div className='min-h-screen bg-gray-100'>
             <main className='mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8'>
                 <div className='mb-12 text-center'>
-                    <h2 className='mb-4 text-4xl font-bold text-gray-900'>Våre produkter</h2>
-                    <p className='mx-auto max-w-3xl text-xl text-gray-600'>
+                    <h2 className='mb-4 text-4xl font-bold text-[#58565b]'>Våre produkter</h2>
+                    <p className='mx-auto max-w-3xl text-xl text-[#58565b]'>
                         Innovative løsninger for jernbaneinfrastruktur med fokus på energieffektivitet og pålitelighet
                     </p>
                 </div>

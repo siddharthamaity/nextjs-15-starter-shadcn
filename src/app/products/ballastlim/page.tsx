@@ -3,7 +3,7 @@ import Image from 'next/image';
 import DownloadButton from '@/components/DownloadButton';
 import Navigation from '@/components/ProductNavigation';
 
-import { Anchor, Ban, Construction, Shield, Volume2 } from 'lucide-react';
+import { Anchor, Ban, Construction, FileText, Shield, Volume2 } from 'lucide-react';
 
 export default function BallastlimPage() {
     const advantages = [
@@ -17,84 +17,82 @@ export default function BallastlimPage() {
     return (
         <div className='min-h-screen bg-gray-50'>
             <Navigation />
-
             <main className='mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8'>
                 <div className='overflow-hidden rounded-xl bg-white shadow-lg'>
                     <div className='p-8 lg:p-12'>
-                        {/* Header with gradient background */}
-                        <div className='mb-8 rounded-lg border-l-4 border-amber-500 bg-gradient-to-r from-amber-50 to-yellow-100 p-6'>
-                            <h1 className='text-3xl leading-tight font-bold text-gray-900 md:text-4xl'>
-                                Termaren TM29 til forsterking av ballast- Liming av pukk langs jernbane, sporvei og
-                                undergrunnspor
+                        {/* Simplified header */}
+                        <div className='mb-8 rounded-lg border-l-4 border-[#f3661a] bg-gray-50 p-6'>
+                            <h1 className='text-3xl leading-tight font-bold text-[#58565b] md:text-4xl'>
+                                Termaren TM29 ballastlim
+                                <br />
+                                <p className='mt-2 text-lg leading-relaxed font-medium text-[#58565b]'>
+                                    Til forsterking av ballast, liming av pukk langs jernbane, sporvei og undergrunnspor
+                                </p>
                             </h1>
                         </div>
 
-                        {/* Images Section with enhanced styling */}
-                        <div className='mb-12 grid grid-cols-1 gap-8 lg:grid-cols-2'>
-                            <div className='overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-[1.02]'>
-                                <Image
-                                    src='/assets/lim/IMG_1478.JPG'
-                                    alt='Ballastlim bilde 1'
-                                    width={500}
-                                    height={400}
-                                    className='h-auto w-full object-cover'
-                                />
-                            </div>
-                            <div className='overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-[1.02]'>
-                                <Image
-                                    src='/assets/lim/lim.PNG'
-                                    alt='Ballastlim bilde 2'
-                                    width={500}
-                                    height={400}
-                                    className='h-auto w-full object-cover'
-                                />
+                        {/* Simplified Images Section */}
+                        <div className='mb-12 w-full'>
+                            <div className='flex flex-col gap-6 sm:flex-row'>
+                                <div className='flex-1 overflow-hidden rounded-lg border border-gray-200 shadow-sm transition-transform duration-300 hover:scale-[1.02]'>
+                                    <Image
+                                        src='/assets/lim/IMG_1478.JPG'
+                                        alt='Ballastlim installasjon'
+                                        width={500}
+                                        height={400}
+                                        className='h-full w-full object-cover'
+                                    />
+                                </div>
+                                <div className='flex-1 overflow-hidden rounded-lg border border-gray-200 shadow-sm transition-transform duration-300 hover:scale-[1.02]'>
+                                    <Image
+                                        src='/assets/lim/lim.PNG'
+                                        alt='Ballastlim produkt'
+                                        width={500}
+                                        height={400}
+                                        className='h-full w-full object-cover'
+                                    />
+                                </div>
                             </div>
                         </div>
 
-                        {/* Enhanced description section */}
-                        <section className='mb-8'>
-                            <div className='mb-8 space-y-6'>
-                                <div className='rounded-lg border-l-4 border-blue-500 bg-gradient-to-r from-blue-50 to-indigo-50 p-6'>
-                                    <p className='text-lg leading-relaxed font-medium text-gray-800'>
-                                        Stadig høyere hastigheter og økt belastning på sporene betyr at jernbanelinjer
-                                        og deres underlag krever mer og mer vedlikehold. Særlig utsatte er
-                                        planoverganger og jernbanebroer med overgang mellom stiv og ballastert
-                                        konstruksjon, samt limskjøter og sporvekselmotorer.
-                                    </p>
-                                </div>
-
-                                <div className='rounded-lg border-l-4 border-green-500 bg-gradient-to-r from-green-50 to-emerald-50 p-6'>
-                                    <p className='text-lg leading-relaxed font-medium text-gray-800'>
-                                        Termaren TM29 limer det øverste laget av ballast med en spesiell, miljøvennlig
-                                        syntetisk harpiks på steder som krever regelmessig vedlikehold. Ballasten, som
-                                        blir svært fast, men samtidig elastisk og vannpermeabel, stabiliserer sporene,
-                                        reduserer vedlikeholdskostnader og forbedrer reiseopplevelsen.
-                                    </p>
-                                </div>
+                        {/* Simplified description section */}
+                        <section className='mb-12'>
+                            <div className='mb-6 rounded-lg border-l-4 border-[#f3661a] bg-orange-50 p-6'>
+                                <p className='mb-4 text-lg leading-relaxed font-medium text-[#58565b]'>
+                                    Stadig høyere hastigheter og økt belastning på sporene betyr at jernbanelinjer og
+                                    deres underlag krever mer og mer vedlikehold. Særlig utsatte er planoverganger og
+                                    jernbanebroer med overgang mellom stiv og ballastert konstruksjon, samt limskjøter
+                                    og sporvekselmotorer.
+                                </p>
+                                <p className='text-lg leading-relaxed font-medium text-[#58565b]'>
+                                    Termaren TM29 limer det øverste laget av ballast med en spesiell, miljøvennlig
+                                    syntetisk harpiks på steder som krever regelmessig vedlikehold. Ballasten, som blir
+                                    svært fast, men samtidig elastisk og vannpermeabel, stabiliserer sporene, reduserer
+                                    vedlikeholdskostnader og forbedrer reiseopplevelsen.
+                                </p>
                             </div>
 
-                            {/* Enhanced advantages section */}
-                            <div className='mb-8 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm'>
-                                <div className='bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4'>
+                            {/* Benefits in single column layout */}
+                            <div className='overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm'>
+                                <div className='bg-[#58565b] px-6 py-4'>
                                     <h2 className='flex items-center gap-2 text-xl font-bold text-white'>
                                         <Shield className='h-6 w-6' />
                                         Liming av pukk har følgende fordeler
                                     </h2>
                                 </div>
-
-                                <div className='bg-gradient-to-b from-amber-50 to-white p-6'>
-                                    <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+                                <div className='bg-gray-50 p-6'>
+                                    <div className='flex flex-col gap-4'>
                                         {advantages.map((advantage, index) => {
                                             const IconComponent = advantage.icon;
                                             
 return (
                                                 <div
                                                     key={index}
-                                                    className='flex items-center gap-3 rounded-lg border border-amber-100 bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md'>
-                                                    <div className='flex-shrink-0 rounded-full bg-amber-100 p-2'>
-                                                        <IconComponent className='h-5 w-5 text-amber-600' />
+                                                    className='flex items-center gap-3 rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-[#f3661a] hover:shadow-md'>
+                                                    <div className='flex-shrink-0 rounded-full bg-orange-100 p-2'>
+                                                        <IconComponent className='h-5 w-5 text-[#f3661a]' />
                                                     </div>
-                                                    <p className='leading-relaxed font-medium text-gray-700'>
+                                                    <p className='leading-relaxed font-medium text-[#58565b]'>
                                                         {advantage.text}
                                                     </p>
                                                 </div>
@@ -105,25 +103,12 @@ return (
                             </div>
                         </section>
 
-                        {/* Enhanced downloads section */}
-                        <div className='border-t pt-8'>
+                        {/* Simplified downloads section */}
+                        <div className='border-t border-gray-200 pt-8'>
                             <div className='mb-6 flex items-center gap-3'>
-                                <svg
-                                    className='h-6 w-6 text-amber-600'
-                                    fill='none'
-                                    stroke='currentColor'
-                                    viewBox='0 0 24 24'
-                                    xmlns='http://www.w3.org/2000/svg'>
-                                    <path
-                                        strokeLinecap='round'
-                                        strokeLinejoin='round'
-                                        strokeWidth={2}
-                                        d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
-                                    />
-                                </svg>
-                                <h2 className='text-2xl font-bold text-gray-900'>Dokumentasjon</h2>
+                                <FileText className='h-6 w-6 text-[#f3661a]' />
+                                <h2 className='text-2xl font-bold text-[#58565b]'>Dokumentasjon</h2>
                             </div>
-
                             <div className='flex flex-col gap-4 sm:flex-row'>
                                 <DownloadButton href='/assets/lim/Produktblad_Ballastlim.pdf'>
                                     Produktblad ballastlim
