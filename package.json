@@ -5,12 +5,19 @@
     "website": "https://nextjs-15-starter-shadcn.vercel.app/",
     "license": "MIT",
     "scripts": {
+        "prepare": "husky",
         "dev": "next dev --turbopack",
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
         "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
         "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx}": [
+            "next lint --fix",
+            "git add"
+        ]
     },
     "dependencies": {
         "@hookform/resolvers": "^5.1.1",
@@ -86,6 +93,8 @@
         "eslint-plugin-promise": "^7.2.1",
         "eslint-plugin-react": "^7.37.5",
         "globals": "^16.2.0",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.1.2",
         "postcss": "^8.5.6",
         "prettier": "^3.5.3",
         "prettier-plugin-tailwindcss": "^0.6.13",
