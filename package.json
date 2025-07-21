@@ -73,7 +73,7 @@
     "devDependencies": {
         "@eslint/js": "^9.31.0",
         "@faker-js/faker": "^9.9.0",
-        "@next/bundle-analyzer": "^15.4.1",
+        "@next/bundle-analyzer": "^15.4.2",
         "@next/eslint-plugin-next": "^15.4.1",
         "@tailwindcss/postcss": "^4.1.11",
         "@trivago/prettier-plugin-sort-imports": "^5.2.2",
