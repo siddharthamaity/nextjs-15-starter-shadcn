@@ -24,8 +24,8 @@ Welcome to the **Next.js 15 Starter** repository! This starter template is built
 - **App Directory**
 - **System, Light & Dark Mode**
 - **Next.js Bundle Analyzer**
-- **Dockerfile** with Node.js 22.17.0 (Alpine)
-- **Dockerfile.bun** with Bun 1.2.18 (Alpine)
+- **Dockerfile** with Node.js 22.17.1 (Alpine)
+- **Dockerfile.bun** with Bun 1.2.19 (Alpine)
 
 
 ### 🛠️ ESLint Plugins
@@ -70,7 +70,7 @@ To enhance development experience, install the following VS Code extensions:
 
 ### Prerequisites
 
-- **Bun**: Version 1.2.18 or higher OR
+- **Bun**: Version 1.2.19 or higher OR
 - **Node.js**: Version 20.18.0 or higher
 - **Docker**: For containerized deployment (optional but recommended)
 

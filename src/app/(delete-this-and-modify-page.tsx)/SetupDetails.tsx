@@ -32,7 +32,7 @@ const FEATURES: Feature[] = [
     { name: 'App Directory' },
     { name: 'System, Light & Dark Mode' },
     { name: 'Next Bundle Analyzer' },
-    { name: 'Dockerfile for Node.js 22.17.0 & Bun 1.2.18 (alpine)' }
+    { name: 'Dockerfile for Node.js 22.17.1 & Bun 1.2.19 (alpine)' }
 ];
 
 const ESLINT_PLUGINS: Plugin[] = [
