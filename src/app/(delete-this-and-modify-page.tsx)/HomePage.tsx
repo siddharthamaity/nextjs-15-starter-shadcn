@@ -6,6 +6,17 @@ import SetupDetails from '@/app/(delete-this-and-modify-page.tsx)/SetupDetails';
 const HomePage: React.FC = () => {
     return (
         <main className='mx-auto mt-6 flex max-w-7xl flex-col justify-center gap-6 px-3 font-[family-name:var(--font-geist-sans)] sm:mt-3 sm:gap-12 sm:px-0'>
+            <div className='mb-4 rounded-lg border border-yellow-400 bg-yellow-50 p-4 text-yellow-800 dark:border-yellow-600 dark:bg-yellow-900/30 dark:text-yellow-200'>
+                <strong>⚠️ ARCHIVED:</strong> This project has been archived. Please use the{' '}
+                <a
+                    href='https://github.com/siddharthamaity/nextjs-16-starter-shadcn'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='font-semibold underline hover:text-yellow-900 dark:hover:text-yellow-100'>
+                    Next.js 16 Starter (shadcn)
+                </a>{' '}
+                instead.
+            </div>
             <div className='justify-centersm:items-start row-start-2 flex flex-col items-center gap-8'>
                 <div className='flex items-center gap-4'>
                     <Image
